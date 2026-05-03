@@ -1,332 +1,102 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - FreshFruits</title>
+<!-- Login Page Content Fragment -->
+<!-- This file is loaded dynamically by the router into #content -->
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<!-- Breadcrumb Navigation -->
+<div class="breadcrumb-container">
+    <div class="breadcrumb-wrapper">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/" class="breadcrumb-link" data-navigate="/">
+                        <i class="bi bi-house-door breadcrumb-home-icon"></i>
+                        <span>Beranda</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <span class="breadcrumb-link">Masuk</span>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
-    <!-- Main Stylesheet (imports all modular CSS) -->
-    <link rel="stylesheet" href="../core/css/main.css" />
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
-  </head>
-  <body>
-    <!-- Header -->
-    <header id="header-placeholder" class="sticky-top shadow-sm"></header>
-
-    <!-- Main Content -->
-    <main id="content" class="app-content" role="main">
-      <!-- Login Page -->
-      <section class="login-section">
-        <div class="container">
-          <div class="login-container">
-            <div class="login-card">
-              <div class="login-header">
-                <i data-lucide="user-circle" class="login-icon" aria-hidden="true"></i>
-                <h2>Welcome Back</h2>
-                <p>Login to access your account</p>
-              </div>
-              
-              <form id="login-form" class="login-form">
-                <div class="form-group">
-                  <label for="username">Username</label>
-                  <div class="input-group">
-                    <i data-lucide="user" aria-hidden="true"></i>
-                    <input 
-                      type="text" 
-                      id="username" 
-                      placeholder="Enter username" 
-                      required
-                      autocomplete="username"
-                    >
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <div class="input-group">
-                    <i data-lucide="lock" aria-hidden="true"></i>
-                    <input 
-                      type="password" 
-                      id="password" 
-                      placeholder="Enter password" 
-                      required
-                      autocomplete="current-password"
-                    >
-                    <button type="button" class="toggle-password" id="toggle-password" aria-label="Show password">
-                      <i data-lucide="eye" aria-hidden="true"></i>
-                    </button>
-                  </div>
-                </div>
-                
-                <div class="form-options">
-                  <label class="checkbox-label">
-                    <input type="checkbox" id="remember-me">
-                    <span>Remember me</span>
-                  </label>
-                  <a href="#" class="forgot-link">Forgot password?</a>
-                </div>
-                
-                <div class="error-message hidden" id="error-message" role="alert">
-                  <i data-lucide="alert-circle" aria-hidden="true"></i>
-                  <span>Invalid username or password</span>
-                </div>
-                
-                <button type="submit" class="btn-login">
-                  <span>Login</span>
-                  <i data-lucide="arrow-right" aria-hidden="true"></i>
-                </button>
-              </form>
-              
-              <div class="login-footer">
-                <p>Demo credentials:</p>
-                <div class="demo-credentials">
-                  <span><strong>Username:</strong> admin</span>
-                  <span><strong>Password:</strong> admin</span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="login-image">
-              <div class="image-content">
-                <i data-lucide="shopping-bag" aria-hidden="true"></i>
-                <h3>Shop Fresh Fruits</h3>
-                <p>Get access to exclusive deals and faster checkout</p>
-              </div>
-            </div>
-          </div>
+<section class="login-section">
+  <div class="container">
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-header">
+          <i data-lucide="user-circle" class="login-icon" aria-hidden="true"></i>
+          <h2>Welcome Back</h2>
+          <p>Login to access your account</p>
         </div>
-      </section>
-    </main>
 
-    <!-- Footer -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Product Details Modal -->
-    <div
-      id="product-modal"
-      class="product-modal modal hidden"
-      role="dialog"
-      aria-modal="true"
-    >
-      <div class="modal-content">
-        <button
-          class="modal-close"
-          id="modal-close"
-          aria-label="Close product details"
-        >
-          <i data-lucide="x"></i>
-        </button>
-
-        <div class="modal-body">
-          <div class="product-gallery">
-            <img
-              id="modal-product-image"
-              src=""
-              alt=""
-              class="modal-product-image"
-            />
-            <div class="modal-product-badges">
-              <span id="modal-badge" class="product-badge"></span>
+        <form id="login-form" class="login-form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <div class="input-group">
+              <i data-lucide="user" aria-hidden="true"></i>
+              <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                required
+                autocomplete="username"
+              >
             </div>
           </div>
 
-          <div class="product-details">
-            <h2 id="modal-product-name" class="modal-product-title"></h2>
-            <div class="modal-product-meta">
-              <div id="modal-product-rating" class="product-rating"></div>
-              <span id="modal-product-category" class="product-category"></span>
-            </div>
-            <p id="modal-product-desc" class="modal-product-description"></p>
-
-            <div class="modal-product-info">
-              <div class="info-section">
-                <h4>Price</h4>
-                <div class="price-row">
-                  <span id="modal-current-price" class="product-price"></span>
-                  <span id="modal-original-price" class="original-price"></span>
-                </div>
-              </div>
-
-              <div class="info-section">
-                <h4>Availability</h4>
-                <span id="modal-stock-status" class="stock-status"></span>
-              </div>
-
-              <div class="info-section">
-                <h4>Nutritional Info</h4>
-                <p id="modal-nutrition" class="nutrition-info"></p>
-              </div>
-            </div>
-
-            <div class="modal-actions">
-              <div class="quantity-selector">
-                <button class="quantity-btn" id="decrease-quantity">-</button>
-                <input
-                  type="number"
-                  id="modal-quantity"
-                  class="quantity-input"
-                  value="1"
-                  min="1"
-                  max="99"
-                />
-                <button class="quantity-btn" id="increase-quantity">+</button>
-              </div>
-              <button
-                class="btn-primary add-to-cart-modal"
-                id="add-to-cart-modal"
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-group">
+              <i data-lucide="lock" aria-hidden="true"></i>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required
+                autocomplete="current-password"
               >
-                Add to Cart
+              <button type="button" class="toggle-password" id="toggle-password" aria-label="Show password">
+                <i data-lucide="eye" aria-hidden="true"></i>
               </button>
             </div>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="remember-me">
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <div class="error-message hidden" id="error-message" role="alert">
+            <i data-lucide="alert-circle" aria-hidden="true"></i>
+            <span>Invalid username or password</span>
+          </div>
+
+          <button type="submit" class="btn-login">
+            <span>Login</span>
+            <i data-lucide="arrow-right" aria-hidden="true"></i>
+          </button>
+        </form>
+
+        <div class="login-footer">
+          <p>Demo credentials:</p>
+          <div class="demo-credentials">
+            <span><strong>Username:</strong> admin</span>
+            <span><strong>Password:</strong> admin</span>
           </div>
         </div>
       </div>
+
+      <div class="login-image">
+        <div class="image-content">
+          <i data-lucide="shopping-bag" aria-hidden="true"></i>
+          <h3>Shop Fresh Fruits</h3>
+          <p>Get access to exclusive deals and faster checkout</p>
+        </div>
+      </div>
     </div>
-
-    <!-- Shopping Cart Overlay -->
-    <div
-      id="cart-overlay"
-      class="cart-overlay hidden"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="cart-title"
-      aria-hidden="true"
-    >
-      <!-- Cart Sidebar -->
-      <aside
-        class="cart-sidebar"
-        role="complementary"
-        aria-label="Keranjang belanja"
-      >
-        <!-- Cart Header -->
-        <header class="cart-header">
-          <div class="cart-header-content">
-            <h2 id="cart-title" class="cart-title">
-              <i data-lucide="shopping-bag" aria-hidden="true"></i>
-              Keranjang Belanja
-            </h2>
-            <span
-              class="cart-item-count"
-              id="cart-total-items"
-              role="status"
-              aria-live="polite"
-            >
-              0 item
-            </span>
-          </div>
-          <button
-            id="close-cart"
-            class="close-cart-btn"
-            aria-label="Tutup keranjang belanja"
-            title="Tutup"
-          >
-            <i data-lucide="x" aria-hidden="true"></i>
-          </button>
-
-          <!-- Free Shipping Progress -->
-          <div
-            class="cart-progress"
-            id="cart-progress"
-            style="display: none"
-          ></div>
-        </header>
-
-        <!-- Cart Body (Items List) -->
-        <main class="cart-body">
-          <div
-            class="cart-items"
-            id="cart-items"
-            role="list"
-            aria-label="Daftar produk di keranjang"
-          >
-            <!-- Cart items will be dynamically inserted here by JavaScript -->
-            <!-- Empty state will show if no items -->
-          </div>
-        </main>
-
-        <!-- Cart Footer (Summary & Checkout) -->
-        <footer class="cart-footer">
-          <!-- Promo Code Section -->
-          <div class="promo-code-section">
-            <div class="promo-code-input-wrapper" id="promo-input-wrapper">
-              <input
-                type="text"
-                class="promo-code-input"
-                id="promo-code-input"
-                placeholder="Masukkan kode promo"
-                aria-label="Promo code"
-              />
-              <button class="btn-apply-promo" id="btn-apply-promo">
-                Gunakan
-              </button>
-            </div>
-
-            <!-- Promo Applied State -->
-            <div class="promo-applied" id="promo-applied" style="display: none">
-              <div class="promo-applied-text">
-                <i data-lucide="tag"></i>
-                <span class="promo-code-text"></span>
-              </div>
-              <button class="btn-remove-promo" id="btn-remove-promo">
-                Hapus
-              </button>
-            </div>
-          </div>
-
-          <!-- Cart Summary -->
-          <div class="cart-summary">
-            <div class="summary-row">
-              <span>Subtotal</span>
-              <span id="cart-subtotal">$0.00</span>
-            </div>
-            <div class="summary-row discount" style="display: none">
-              <span>Diskon</span>
-              <span id="cart-discount">$0.00</span>
-            </div>
-            <div class="summary-row">
-              <span>Ongkos Kirim</span>
-              <span id="cart-delivery" class="delivery-fee">GRATIS</span>
-            </div>
-            <hr class="summary-divider" />
-            <div class="summary-row total-row">
-              <span>Total</span>
-              <span class="total-price" id="cart-total">$0.00</span>
-            </div>
-          </div>
-
-          <!-- Checkout Button -->
-          <button class="checkout-btn" id="checkout-btn" disabled>
-            <span>Checkout Sekarang</span>
-            <i data-lucide="arrow-right"></i>
-          </button>
-
-          <!-- Continue Shopping -->
-          <div class="continue-shopping" id="continue-shopping">
-            <i data-lucide="arrow-left"></i>
-            <span>Lanjut Belanja</span>
-          </div>
-        </footer>
-      </aside>
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Main Application Script (ES6 Modules) -->
-    <script type="module" src="../core/js/app.js"></script>
-  </body>
-</html>
+  </div>
+</section>

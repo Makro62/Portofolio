@@ -1,0 +1,121 @@
+/* ========================================
+   BREADCRUMB NAVIGATION
+   Marketplace Style (Tokopedia/Shopee/Blibli)
+   ======================================== */
+
+.breadcrumb-container {
+    background-color: var(--bg-card);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.breadcrumb-wrapper {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    gap: 8px;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "/";
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-right: 4px;
+}
+
+.breadcrumb-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-weight: 400;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.breadcrumb-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.breadcrumb-item.active .breadcrumb-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    cursor: default;
+}
+
+.breadcrumb-item.active .breadcrumb-link:hover {
+    text-decoration: none;
+}
+
+/* Icon styling for home link */
+.breadcrumb-home-icon {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb-link:hover .breadcrumb-home-icon {
+    color: var(--primary-color);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .breadcrumb-container {
+        padding: 10px 0;
+        margin-bottom: 16px;
+    }
+    
+    .breadcrumb-wrapper {
+        padding: 0 12px;
+    }
+    
+    .breadcrumb {
+        font-size: 0.75rem;
+        gap: 4px;
+    }
+    
+    .breadcrumb-item + .breadcrumb-item::before {
+        padding: 0 4px;
+    }
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .breadcrumb-container {
+    background-color: var(--bg-card);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .breadcrumb-link {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .breadcrumb-link:hover {
+    color: var(--primary-light);
+}
+
+[data-theme="dark"] .breadcrumb-item.active {
+    color: #ffffff;
+}

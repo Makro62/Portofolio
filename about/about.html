@@ -1,440 +1,209 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About - FreshFruits</title>
+<!-- About Page Content Fragment -->
+<!-- This file is loaded dynamically by the router into #content -->
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<!-- Breadcrumb Navigation -->
+<div class="breadcrumb-container">
+    <div class="breadcrumb-wrapper">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/" class="breadcrumb-link" data-navigate="/">
+                        <i class="bi bi-house-door breadcrumb-home-icon"></i>
+                        <span>Beranda</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <span class="breadcrumb-link">Tentang Kami</span>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
-    <!-- Main Stylesheet (imports all modular CSS) -->
-    <link rel="stylesheet" href="../core/css/main.css" />
+<!-- About Hero Section -->
+<section class="about-hero">
+  <div class="container">
+    <h1 class="about-title">About FreshFruits</h1>
+    <p class="about-subtitle">
+      Bringing farm-fresh goodness to your table since 2020
+    </p>
+  </div>
+</section>
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
-  </head>
-  <body>
-    <!-- Header -->
-    <header id="header-placeholder" class="sticky-top shadow-sm"></header>
-
-    <!-- Main Content -->
-    <main id="content" class="app-content" role="main">
-      <!-- About Page -->
-      
-      <!-- About Hero Section -->
-      <section class="about-hero">
-        <div class="container">
-          <h1 class="about-title">About FreshFruits</h1>
-          <p class="about-subtitle">
-            Bringing farm-fresh goodness to your table since 2020
-          </p>
-        </div>
-      </section>
-      
-      <!-- Our Story Section -->
-      <section class="about-section">
-        <div class="container">
-          <h2 class="section-title">Our Story</h2>
-          <div class="about-content">
-            <div class="about-text">
-              <p>
-                FreshFruits was founded in 2020 with a simple mission: to deliver the
-                freshest, highest-quality fruits directly from local farms to your
-                doorstep.
-              </p>
-              <p>
-                We partner with organic farmers who share our commitment to
-                sustainability, ethical growing practices, and exceptional flavor.
-              </p>
-              <p>
-                Every fruit you order is hand-picked, carefully packed, and shipped
-                within 24 hours to ensure maximum freshness.
-              </p>
-              <p>
-                Today, we serve thousands of happy customers across the country,
-                delivering over 10,000 pounds of fresh, organic fruits every week.
-              </p>
-            </div>
-            <div class="about-image">
-              <img
-                src="https://placehold.co/600x400/4ade80/ffffff?text=Fresh+Fruits"
-                alt="Fresh fruits basket"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Mission & Vision Section -->
-      <section class="mission-vision">
-        <div class="container">
-          <div class="mv-grid">
-            <div class="mv-card">
-              <div class="mv-icon">
-                <i data-lucide="target"></i>
-              </div>
-              <h3>Our Mission</h3>
-              <p>
-                To provide the freshest, highest-quality organic fruits while
-                supporting local farmers and promoting sustainable agriculture
-                practices.
-              </p>
-            </div>
-            <div class="mv-card">
-              <div class="mv-icon">
-                <i data-lucide="eye"></i>
-              </div>
-              <h3>Our Vision</h3>
-              <p>
-                To become the most trusted and beloved online fruit delivery service,
-                making healthy eating accessible and convenient for everyone.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Our Values Section -->
-      <section class="values-section">
-        <div class="container">
-          <h2 class="section-title">Our Core Values</h2>
-          <div class="values-grid">
-            <div class="value-item">
-              <div class="value-icon">
-                <i data-lucide="heart"></i>
-              </div>
-              <h3>Quality First</h3>
-              <p>
-                We never compromise on the quality of our fruits. Every piece is
-                carefully selected and inspected.
-              </p>
-            </div>
-            <div class="value-item">
-              <div class="value-icon">
-                <i data-lucide="leaf"></i>
-              </div>
-              <h3>Sustainability</h3>
-              <p>
-                We're committed to eco-friendly practices and supporting sustainable
-                farming methods.
-              </p>
-            </div>
-            <div class="value-item">
-              <div class="value-icon">
-                <i data-lucide="users"></i>
-              </div>
-              <h3>Community</h3>
-              <p>
-                We support local farmers and build strong relationships with our
-                partners and customers.
-              </p>
-            </div>
-            <div class="value-item">
-              <div class="value-icon">
-                <i data-lucide="shield-check"></i>
-              </div>
-              <h3>Integrity</h3>
-              <p>
-                Transparency and honesty in everything we do, from sourcing to
-                delivery.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Stats Section -->
-      <section class="stats-section">
-        <div class="container">
-          <div class="stats-grid">
-            <div class="stat-item">
-              <div class="stat-number">50+</div>
-              <div class="stat-label">Partner Farms</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">10K+</div>
-              <div class="stat-label">Happy Customers</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">100K+</div>
-              <div class="stat-label">Orders Delivered</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">24hrs</div>
-              <div class="stat-label">Delivery Time</div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Team Section -->
-      <section class="team-section">
-        <div class="container">
-          <h2 class="section-title">Meet Our Team</h2>
-          <p class="section-subtitle">The people behind FreshFruits</p>
-          <div class="team-grid">
-            <div class="team-member">
-              <div class="member-avatar">JD</div>
-              <h3>John Davidson</h3>
-              <p class="member-role">Founder & CEO</p>
-              <p class="member-bio">
-                Passionate about sustainable agriculture and healthy living.
-              </p>
-            </div>
-            <div class="team-member">
-              <div class="member-avatar">SM</div>
-              <h3>Sarah Mitchell</h3>
-              <p class="member-role">Operations Director</p>
-              <p class="member-bio">
-                Expert in logistics and supply chain management.
-              </p>
-            </div>
-            <div class="team-member">
-              <div class="member-avatar">MJ</div>
-              <h3>Michael Johnson</h3>
-              <p class="member-role">Head of Sourcing</p>
-              <p class="member-bio">
-                Building relationships with the best organic farms.
-              </p>
-            </div>
-            <div class="team-member">
-              <div class="member-avatar">EP</div>
-              <h3>Emily Parker</h3>
-              <p class="member-role">Customer Success Lead</p>
-              <p class="member-bio">
-                Ensuring every customer has an amazing experience.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Product Details Modal -->
-    <div
-      id="product-modal"
-      class="product-modal modal hidden"
-      role="dialog"
-      aria-modal="true"
-    >
-      <div class="modal-content">
-        <button
-          class="modal-close"
-          id="modal-close"
-          aria-label="Close product details"
-        >
-          <i data-lucide="x"></i>
-        </button>
-
-        <div class="modal-body">
-          <div class="product-gallery">
-            <img
-              id="modal-product-image"
-              src=""
-              alt=""
-              class="modal-product-image"
-            />
-            <div class="modal-product-badges">
-              <span id="modal-badge" class="product-badge"></span>
-            </div>
-          </div>
-
-          <div class="product-details">
-            <h2 id="modal-product-name" class="modal-product-title"></h2>
-            <div class="modal-product-meta">
-              <div id="modal-product-rating" class="product-rating"></div>
-              <span id="modal-product-category" class="product-category"></span>
-            </div>
-            <p id="modal-product-desc" class="modal-product-description"></p>
-
-            <div class="modal-product-info">
-              <div class="info-section">
-                <h4>Price</h4>
-                <div class="price-row">
-                  <span id="modal-current-price" class="product-price"></span>
-                  <span id="modal-original-price" class="original-price"></span>
-                </div>
-              </div>
-
-              <div class="info-section">
-                <h4>Availability</h4>
-                <span id="modal-stock-status" class="stock-status"></span>
-              </div>
-
-              <div class="info-section">
-                <h4>Nutritional Info</h4>
-                <p id="modal-nutrition" class="nutrition-info"></p>
-              </div>
-            </div>
-
-            <div class="modal-actions">
-              <div class="quantity-selector">
-                <button class="quantity-btn" id="decrease-quantity">-</button>
-                <input
-                  type="number"
-                  id="modal-quantity"
-                  class="quantity-input"
-                  value="1"
-                  min="1"
-                  max="99"
-                />
-                <button class="quantity-btn" id="increase-quantity">+</button>
-              </div>
-              <button
-                class="btn-primary add-to-cart-modal"
-                id="add-to-cart-modal"
-              >
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
+<!-- Our Story Section -->
+<section class="about-section">
+  <div class="container">
+    <h2 class="section-title">Our Story</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          FreshFruits was founded in 2020 with a simple mission: to deliver the
+          freshest, highest-quality fruits directly from local farms to your
+          doorstep.
+        </p>
+        <p>
+          We partner with organic farmers who share our commitment to
+          sustainability, ethical growing practices, and exceptional flavor.
+        </p>
+        <p>
+          Every fruit you order is hand-picked, carefully packed, and shipped
+          within 24 hours to ensure maximum freshness.
+        </p>
+        <p>
+          Today, we serve thousands of happy customers across the country,
+          delivering over 10,000 pounds of fresh, organic fruits every week.
+        </p>
+      </div>
+      <div class="about-image">
+        <img
+          src="https://placehold.co/600x400/4ade80/ffffff?text=Fresh+Fruits"
+          alt="Fresh fruits basket"
+        />
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Shopping Cart Overlay -->
-    <div
-      id="cart-overlay"
-      class="cart-overlay hidden"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="cart-title"
-      aria-hidden="true"
-    >
-      <!-- Cart Sidebar -->
-      <aside
-        class="cart-sidebar"
-        role="complementary"
-        aria-label="Keranjang belanja"
-      >
-        <!-- Cart Header -->
-        <header class="cart-header">
-          <div class="cart-header-content">
-            <h2 id="cart-title" class="cart-title">
-              <i data-lucide="shopping-bag" aria-hidden="true"></i>
-              Keranjang Belanja
-            </h2>
-            <span
-              class="cart-item-count"
-              id="cart-total-items"
-              role="status"
-              aria-live="polite"
-            >
-              0 item
-            </span>
-          </div>
-          <button
-            id="close-cart"
-            class="close-cart-btn"
-            aria-label="Tutup keranjang belanja"
-            title="Tutup"
-          >
-            <i data-lucide="x" aria-hidden="true"></i>
-          </button>
-
-          <!-- Free Shipping Progress -->
-          <div
-            class="cart-progress"
-            id="cart-progress"
-            style="display: none"
-          ></div>
-        </header>
-
-        <!-- Cart Body (Items List) -->
-        <main class="cart-body">
-          <div
-            class="cart-items"
-            id="cart-items"
-            role="list"
-            aria-label="Daftar produk di keranjang"
-          >
-            <!-- Cart items will be dynamically inserted here by JavaScript -->
-            <!-- Empty state will show if no items -->
-          </div>
-        </main>
-
-        <!-- Cart Footer (Summary & Checkout) -->
-        <footer class="cart-footer">
-          <!-- Promo Code Section -->
-          <div class="promo-code-section">
-            <div class="promo-code-input-wrapper" id="promo-input-wrapper">
-              <input
-                type="text"
-                class="promo-code-input"
-                id="promo-code-input"
-                placeholder="Masukkan kode promo"
-                aria-label="Promo code"
-              />
-              <button class="btn-apply-promo" id="btn-apply-promo">
-                Gunakan
-              </button>
-            </div>
-
-            <!-- Promo Applied State -->
-            <div class="promo-applied" id="promo-applied" style="display: none">
-              <div class="promo-applied-text">
-                <i data-lucide="tag"></i>
-                <span class="promo-code-text"></span>
-              </div>
-              <button class="btn-remove-promo" id="btn-remove-promo">
-                Hapus
-              </button>
-            </div>
-          </div>
-
-          <!-- Cart Summary -->
-          <div class="cart-summary">
-            <div class="summary-row">
-              <span>Subtotal</span>
-              <span id="cart-subtotal">$0.00</span>
-            </div>
-            <div class="summary-row discount" style="display: none">
-              <span>Diskon</span>
-              <span id="cart-discount">$0.00</span>
-            </div>
-            <div class="summary-row">
-              <span>Ongkos Kirim</span>
-              <span id="cart-delivery" class="delivery-fee">GRATIS</span>
-            </div>
-            <hr class="summary-divider" />
-            <div class="summary-row total-row">
-              <span>Total</span>
-              <span class="total-price" id="cart-total">$0.00</span>
-            </div>
-          </div>
-
-          <!-- Checkout Button -->
-          <button class="checkout-btn" id="checkout-btn" disabled>
-            <span>Checkout Sekarang</span>
-            <i data-lucide="arrow-right"></i>
-          </button>
-
-          <!-- Continue Shopping -->
-          <div class="continue-shopping" id="continue-shopping">
-            <i data-lucide="arrow-left"></i>
-            <span>Lanjut Belanja</span>
-          </div>
-        </footer>
-      </aside>
+<!-- Mission & Vision Section -->
+<section class="mission-vision">
+  <div class="container">
+    <div class="mv-grid">
+      <div class="mv-card">
+        <div class="mv-icon">
+          <i data-lucide="target"></i>
+        </div>
+        <h3>Our Mission</h3>
+        <p>
+          To provide the freshest, highest-quality organic fruits while
+          supporting local farmers and promoting sustainable agriculture
+          practices.
+        </p>
+      </div>
+      <div class="mv-card">
+        <div class="mv-icon">
+          <i data-lucide="eye"></i>
+        </div>
+        <h3>Our Vision</h3>
+        <p>
+          To become the most trusted and beloved online fruit delivery service,
+          making healthy eating accessible and convenient for everyone.
+        </p>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Our Values Section -->
+<section class="values-section">
+  <div class="container">
+    <h2 class="section-title">Our Core Values</h2>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-icon">
+          <i data-lucide="heart"></i>
+        </div>
+        <h3>Quality First</h3>
+        <p>
+          We never compromise on the quality of our fruits. Every piece is
+          carefully selected and inspected.
+        </p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">
+          <i data-lucide="leaf"></i>
+        </div>
+        <h3>Sustainability</h3>
+        <p>
+          We're committed to eco-friendly practices and supporting sustainable
+          farming methods.
+        </p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">
+          <i data-lucide="users"></i>
+        </div>
+        <h3>Community</h3>
+        <p>
+          We support local farmers and build strong relationships with our
+          partners and customers.
+        </p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">
+          <i data-lucide="shield-check"></i>
+        </div>
+        <h3>Integrity</h3>
+        <p>
+          Transparency and honesty in everything we do, from sourcing to
+          delivery.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Main Application Script (ES6 Modules) -->
-    <script type="module" src="../core/js/app.js"></script>
-  </body>
-</html>
+<!-- Stats Section -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Partner Farms</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">10K+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100K+</div>
+        <div class="stat-label">Orders Delivered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24hrs</div>
+        <div class="stat-label">Delivery Time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section">
+  <div class="container">
+    <h2 class="section-title">Meet Our Team</h2>
+    <p class="section-subtitle">The people behind FreshFruits</p>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="member-avatar">JD</div>
+        <h3>John Davidson</h3>
+        <p class="member-role">Founder & CEO</p>
+        <p class="member-bio">
+          Passionate about sustainable agriculture and healthy living.
+        </p>
+      </div>
+      <div class="team-member">
+        <div class="member-avatar">SM</div>
+        <h3>Sarah Mitchell</h3>
+        <p class="member-role">Operations Director</p>
+        <p class="member-bio">
+          Expert in logistics and supply chain management.
+        </p>
+      </div>
+      <div class="team-member">
+        <div class="member-avatar">MJ</div>
+        <h3>Michael Johnson</h3>
+        <p class="member-role">Head of Sourcing</p>
+        <p class="member-bio">
+          Building relationships with the best organic farms.
+        </p>
+      </div>
+      <div class="team-member">
+        <div class="member-avatar">EP</div>
+        <h3>Emily Parker</h3>
+        <p class="member-role">Customer Success Lead</p>
+        <p class="member-bio">
+          Ensuring every customer has an amazing experience.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
