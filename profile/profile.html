@@ -1,504 +1,197 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile - FreshFruits</title>
+<!-- Profile Page Content Fragment -->
+<!-- This file is loaded dynamically by the router into #content -->
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<!-- Breadcrumb Navigation -->
+<div class="breadcrumb-container">
+    <div class="breadcrumb-wrapper">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/" class="breadcrumb-link" data-navigate="/">
+                        <i class="bi bi-house-door breadcrumb-home-icon"></i>
+                        <span>Beranda</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <span class="breadcrumb-link">Profil Saya</span>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
-    <!-- Main Stylesheet (imports all modular CSS) -->
-    <link rel="stylesheet" href="../core/css/main.css" />
+<section class="profile-section">
+  <div class="container">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-avatar-large">
+        <i data-lucide="user"></i>
+      </div>
+      <div class="profile-info">
+        <h1 id="profile-name">Admin User</h1>
+        <p id="profile-email">admin@freshfruits.com</p>
+        <span class="profile-badge">Premium Member</span>
+      </div>
+      <button class="btn-logout" id="logout-btn-header">
+        <i data-lucide="log-out"></i>
+        <span>Logout</span>
+      </button>
+    </div>
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Profile Tabs -->
+    <div class="profile-tabs">
+      <button class="tab-btn active" data-tab="orders">
+        <i data-lucide="shopping-bag"></i>
+        <span>Riwayat Pesanan</span>
+      </button>
+      <button class="tab-btn" data-tab="wishlist">
+        <i data-lucide="heart"></i>
+        <span>Wishlist</span>
+      </button>
+      <button class="tab-btn" data-tab="settings">
+        <i data-lucide="settings"></i>
+        <span>Pengaturan</span>
+      </button>
+    </div>
 
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
-  </head>
-  <body>
-    <!-- Header -->
-    <header id="header-placeholder" class="sticky-top shadow-sm"></header>
-
-    <!-- Main Content -->
-    <main id="content" class="app-content" role="main">
-      <!-- Profile Page -->
-      <section class="profile-section">
-        <div class="container">
-          <!-- Profile Header -->
-          <div class="profile-header">
-            <div class="profile-avatar-large">
-              <i data-lucide="user"></i>
-            </div>
-            <div class="profile-info">
-              <h1 id="profile-name">Admin User</h1>
-              <p id="profile-email">admin@freshfruits.com</p>
-              <span class="profile-badge">Premium Member</span>
-            </div>
-            <button class="btn-logout" id="logout-btn-header">
-              <i data-lucide="log-out"></i>
-              <span>Logout</span>
-            </button>
+    <!-- Tab Content: Orders -->
+    <div class="tab-content active" id="orders-tab">
+      <h3 class="mb-4">Riwayat Pesanan</h3>
+      <div class="orders-list">
+        <!-- Order 1 -->
+        <div class="order-card">
+          <div class="order-header">
+            <span class="order-id">Order #FF-2024-001</span>
+            <span class="order-status status-success">Selesai</span>
           </div>
-
-          <!-- Profile Stats -->
-          <div class="profile-stats">
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i data-lucide="shopping-cart"></i>
+          <div class="order-body">
+            <div class="order-items">
+              <div class="order-item">
+                <img src="https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?w=100" alt="Apple" class="item-img">
+                <div class="item-info">
+                  <h4>Fresh Apple Red</h4>
+                  <p>Qty: 2 kg</p>
+                </div>
+                <span class="item-price">$12.00</span>
               </div>
-              <div class="stat-info">
-                <h3>24</h3>
-                <p>Total Orders</p>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i data-lucide="heart"></i>
-              </div>
-              <div class="stat-info">
-                <h3>12</h3>
-                <p>Wishlist Items</p>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i data-lucide="star"></i>
-              </div>
-              <div class="stat-info">
-                <h3>4.9</h3>
-                <p>Your Rating</p>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i data-lucide="award"></i>
-              </div>
-              <div class="stat-info">
-                <h3>$520</h3>
-                <p>Total Spent</p>
+              <div class="order-item">
+                <img src="https://images.unsplash.com/photo-1587049352846-4a222e2d9b72?w=100" alt="Banana" class="item-img">
+                <div class="item-info">
+                  <h4>Organic Banana</h4>
+                  <p>Qty: 1 kg</p>
+                </div>
+                <span class="item-price">$5.00</span>
               </div>
             </div>
           </div>
-
-          <!-- Profile Content -->
-          <div class="profile-content">
-            <!-- Sidebar Menu -->
-            <div class="profile-sidebar">
-              <nav class="profile-nav">
-                <a href="#" class="profile-nav-item active" data-tab="orders">
-                  <i data-lucide="package"></i>
-                  <span>My Orders</span>
-                </a>
-                <a href="#" class="profile-nav-item" data-tab="wishlist">
-                  <i data-lucide="heart"></i>
-                  <span>Wishlist</span>
-                </a>
-                <a href="#" class="profile-nav-item" data-tab="addresses">
-                  <i data-lucide="map-pin"></i>
-                  <span>Addresses</span>
-                </a>
-                <a href="#" class="profile-nav-item" data-tab="settings">
-                  <i data-lucide="settings"></i>
-                  <span>Settings</span>
-                </a>
-              </nav>
-            </div>
-
-            <!-- Main Content Area -->
-            <div class="profile-main">
-              <!-- Orders Tab -->
-              <div class="tab-content active" id="orders-tab">
-                <h2 class="tab-title">My Orders</h2>
-
-                <div class="order-card">
-                  <div class="order-header">
-                    <div>
-                      <h3>Order #1234567</h3>
-                      <p class="order-date">Placed on May 15, 2025</p>
-                    </div>
-                    <span class="order-status delivered">Delivered</span>
-                  </div>
-                  <div class="order-items">
-                    <div class="order-item">
-                      <img
-                        src="https://placehold.co/80x80/ff6b81/ffffff?text=Strawberry"
-                        alt="Strawberries"
-                        class="rounded"
-                      />
-                      <div class="order-item-info">
-                        <h4>Organic Strawberries</h4>
-                        <p>Qty: 2 × $4.99</p>
-                      </div>
-                      <p class="order-item-price">$9.98</p>
-                    </div>
-                    <div class="order-item">
-                      <img
-                        src="https://placehold.co/80x80/ffa630/ffffff?text=Mango"
-                        alt="Mangoes"
-                        class="rounded"
-                      />
-                      <div class="order-item-info">
-                        <h4>Sweet Mangoes</h4>
-                        <p>Qty: 3 × $2.99</p>
-                      </div>
-                      <p class="order-item-price">$8.97</p>
-                    </div>
-                  </div>
-                  <div class="order-footer">
-                    <div class="order-total">
-                      <span>Total:</span>
-                      <span class="order-total-price">$18.95</span>
-                    </div>
-                    <button class="btn-secondary">Order Again</button>
-                  </div>
-                </div>
-
-                <div class="order-card">
-                  <div class="order-header">
-                    <div>
-                      <h3>Order #1234566</h3>
-                      <p class="order-date">Placed on May 10, 2025</p>
-                    </div>
-                    <span class="order-status processing">Processing</span>
-                  </div>
-                  <div class="order-items">
-                    <div class="order-item">
-                      <img
-                        src="https://placehold.co/80x80/5e60ce/ffffff?text=Blueberry"
-                        alt="Blueberries"
-                      />
-                      <div class="order-item-info">
-                        <h4>Fresh Blueberries</h4>
-                        <p>Qty: 1 × $5.99</p>
-                      </div>
-                      <p class="order-item-price">$5.99</p>
-                    </div>
-                  </div>
-                  <div class="order-footer">
-                    <div class="order-total">
-                      <span>Total:</span>
-                      <span class="order-total-price">$5.99</span>
-                    </div>
-                    <button class="btn-secondary">Track Order</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Wishlist Tab -->
-              <div class="tab-content" id="wishlist-tab">
-                <h2 class="tab-title">My Wishlist</h2>
-                <div class="wishlist-grid">
-                  <div class="wishlist-item">
-                    <img
-                      src="https://placehold.co/200x200/ff9a8b/ffffff?text=Apple"
-                      alt="Apple"
-                    />
-                    <h3>Crisp Apples</h3>
-                    <p class="wishlist-price">$1.29</p>
-                    <button class="btn-add-cart">Add to Cart</button>
-                  </div>
-                  <div class="wishlist-item">
-                    <img
-                      src="https://placehold.co/200x200/ff9f1c/ffffff?text=Orange"
-                      alt="Orange"
-                    />
-                    <h3>Juicy Oranges</h3>
-                    <p class="wishlist-price">$1.49</p>
-                    <button class="btn-add-cart">Add to Cart</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Addresses Tab -->
-              <div class="tab-content" id="addresses-tab">
-                <h2 class="tab-title">Saved Addresses</h2>
-                <div class="address-grid">
-                  <div class="address-card">
-                    <div class="address-header">
-                      <h3 class="m-0">Home</h3>
-                      <span class="address-badge">Default</span>
-                    </div>
-                    <p>123 Fruit Street</p>
-                    <p>Freshville, CA 90210</p>
-                    <p>Phone: (555) 123-4567</p>
-                    <div class="address-actions">
-                      <button class="btn-text">Edit</button>
-                      <button class="btn-text">Delete</button>
-                    </div>
-                  </div>
-                  <div class="address-card add-address">
-                    <i data-lucide="plus-circle"></i>
-                    <p>Add New Address</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Settings Tab -->
-              <div class="tab-content" id="settings-tab">
-                <h2 class="tab-title">Account Settings</h2>
-                <div class="settings-form">
-                  <div class="form-group">
-                    <label>Full Name</label>
-                    <input
-                      type="text"
-                      value="Admin User"
-                      placeholder="Enter your name"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label>Email Address</label>
-                    <input
-                      type="email"
-                      value="admin@freshfruits.com"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label>Phone Number</label>
-                    <input
-                      type="tel"
-                      value="(555) 123-4567"
-                      placeholder="Enter your phone"
-                    />
-                  </div>
-                  <button class="btn-save">Save Changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="text-center mt-5">
-            <button id="logout-btn" class="btn btn-outline-danger px-5">
-              Keluar dari Akun
-            </button>
+          <div class="order-footer">
+            <span class="order-total">Total: $17.00</span>
+            <button class="btn btn-sm btn-outline-primary">Detail</button>
           </div>
         </div>
-      </section>
-    </main>
 
-    <!-- Footer -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Product Details Modal -->
-    <div
-      id="product-modal"
-      class="product-modal modal hidden"
-      role="dialog"
-      aria-modal="true"
-    >
-      <div class="modal-content">
-        <button
-          class="modal-close"
-          id="modal-close"
-          aria-label="Close product details"
-        >
-          <i data-lucide="x"></i>
-        </button>
-
-        <div class="modal-body">
-          <div class="product-gallery">
-            <img
-              id="modal-product-image"
-              src=""
-              alt=""
-              class="modal-product-image"
-            />
-            <div class="modal-product-badges">
-              <span id="modal-badge" class="product-badge"></span>
+        <!-- Order 2 -->
+        <div class="order-card">
+          <div class="order-header">
+            <span class="order-id">Order #FF-2024-002</span>
+            <span class="order-status status-warning">Dikirim</span>
+          </div>
+          <div class="order-body">
+            <div class="order-items">
+              <div class="order-item">
+                <img src="https://images.unsplash.com/photo-1557800636-894a64c1696f?w=100" alt="Orange" class="item-img">
+                <div class="item-info">
+                  <h4>Fresh Orange</h4>
+                  <p>Qty: 3 kg</p>
+                </div>
+                <span class="item-price">$15.00</span>
+              </div>
             </div>
           </div>
-
-          <div class="product-details">
-            <h2 id="modal-product-name" class="modal-product-title"></h2>
-            <div class="modal-product-meta">
-              <div id="modal-product-rating" class="product-rating"></div>
-              <span id="modal-product-category" class="product-category"></span>
-            </div>
-            <p id="modal-product-desc" class="modal-product-description"></p>
-
-            <div class="modal-product-info">
-              <div class="info-section">
-                <h4>Price</h4>
-                <div class="price-row">
-                  <span id="modal-current-price" class="product-price"></span>
-                  <span id="modal-original-price" class="original-price"></span>
-                </div>
-              </div>
-
-              <div class="info-section">
-                <h4>Availability</h4>
-                <span id="modal-stock-status" class="stock-status"></span>
-              </div>
-
-              <div class="info-section">
-                <h4>Nutritional Info</h4>
-                <p id="modal-nutrition" class="nutrition-info"></p>
-              </div>
-            </div>
-
-            <div class="modal-actions">
-              <div class="quantity-selector">
-                <button class="quantity-btn" id="decrease-quantity">-</button>
-                <input
-                  type="number"
-                  id="modal-quantity"
-                  class="quantity-input"
-                  value="1"
-                  min="1"
-                  max="99"
-                />
-                <button class="quantity-btn" id="increase-quantity">+</button>
-              </div>
-              <button
-                class="btn-primary add-to-cart-modal"
-                id="add-to-cart-modal"
-              >
-                Add to Cart
-              </button>
-            </div>
+          <div class="order-footer">
+            <span class="order-total">Total: $15.00</span>
+            <button class="btn btn-sm btn-outline-primary">Lacak Pesanan</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Shopping Cart Overlay -->
-    <div
-      id="cart-overlay"
-      class="cart-overlay hidden"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="cart-title"
-      aria-hidden="true"
-    >
-      <!-- Cart Sidebar -->
-      <aside
-        class="cart-sidebar"
-        role="complementary"
-        aria-label="Keranjang belanja"
-      >
-        <!-- Cart Header -->
-        <header class="cart-header">
-          <div class="cart-header-content">
-            <h2 id="cart-title" class="cart-title">
-              <i data-lucide="shopping-bag" aria-hidden="true"></i>
-              Keranjang Belanja
-            </h2>
-            <span
-              class="cart-item-count"
-              id="cart-total-items"
-              role="status"
-              aria-live="polite"
-            >
-              0 item
-            </span>
+    <!-- Tab Content: Wishlist -->
+    <div class="tab-content" id="wishlist-tab">
+      <h3 class="mb-4">Wishlist Saya</h3>
+      <div class="wishlist-grid">
+        <div class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300" alt="Apple">
+            <button class="wishlist-btn active">
+              <i data-lucide="heart"></i>
+            </button>
           </div>
-          <button
-            id="close-cart"
-            class="close-cart-btn"
-            aria-label="Tutup keranjang belanja"
-            title="Tutup"
-          >
-            <i data-lucide="x" aria-hidden="true"></i>
-          </button>
-
-          <!-- Free Shipping Progress -->
-          <div
-            class="cart-progress"
-            id="cart-progress"
-            style="display: none"
-          ></div>
-        </header>
-
-        <!-- Cart Body (Items List) -->
-        <main class="cart-body">
-          <div
-            class="cart-items"
-            id="cart-items"
-            role="list"
-            aria-label="Daftar produk di keranjang"
-          >
-            <!-- Cart items will be dynamically inserted here by JavaScript -->
-            <!-- Empty state will show if no items -->
+          <div class="product-info">
+            <h4>Fresh Apple Red</h4>
+            <div class="product-rating">
+              <i data-lucide="star" class="fill"></i>
+              <span>4.8</span>
+            </div>
+            <div class="product-price">
+              <span class="current">$6.00/kg</span>
+            </div>
+            <button class="btn-add-cart">
+              <i data-lucide="shopping-cart"></i>
+              <span>Add to Cart</span>
+            </button>
           </div>
-        </main>
+        </div>
 
-        <!-- Cart Footer (Summary & Checkout) -->
-        <footer class="cart-footer">
-          <!-- Promo Code Section -->
-          <div class="promo-code-section">
-            <div class="promo-code-input-wrapper" id="promo-input-wrapper">
-              <input
-                type="text"
-                class="promo-code-input"
-                id="promo-code-input"
-                placeholder="Masukkan kode promo"
-                aria-label="Promo code"
-              />
-              <button class="btn-apply-promo" id="btn-apply-promo">
-                Gunakan
-              </button>
-            </div>
-
-            <!-- Promo Applied State -->
-            <div class="promo-applied" id="promo-applied" style="display: none">
-              <div class="promo-applied-text">
-                <i data-lucide="tag"></i>
-                <span class="promo-code-text"></span>
-              </div>
-              <button class="btn-remove-promo" id="btn-remove-promo">
-                Hapus
-              </button>
-            </div>
+        <div class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1587049352847-81a454426c4f?w=300" alt="Grapes">
+            <button class="wishlist-btn active">
+              <i data-lucide="heart"></i>
+            </button>
           </div>
-
-          <!-- Cart Summary -->
-          <div class="cart-summary">
-            <div class="summary-row">
-              <span>Subtotal</span>
-              <span id="cart-subtotal">$0.00</span>
+          <div class="product-info">
+            <h4>Seedless Grapes</h4>
+            <div class="product-rating">
+              <i data-lucide="star" class="fill"></i>
+              <span>4.9</span>
             </div>
-            <div class="summary-row discount" style="display: none">
-              <span>Diskon</span>
-              <span id="cart-discount">$0.00</span>
+            <div class="product-price">
+              <span class="current">$8.50/kg</span>
             </div>
-            <div class="summary-row">
-              <span>Ongkos Kirim</span>
-              <span id="cart-delivery" class="delivery-fee">GRATIS</span>
-            </div>
-            <hr class="summary-divider" />
-            <div class="summary-row total-row">
-              <span>Total</span>
-              <span class="total-price" id="cart-total">$0.00</span>
-            </div>
+            <button class="btn-add-cart">
+              <i data-lucide="shopping-cart"></i>
+              <span>Add to Cart</span>
+            </button>
           </div>
-
-          <!-- Checkout Button -->
-          <button class="checkout-btn" id="checkout-btn" disabled>
-            <span>Checkout Sekarang</span>
-            <i data-lucide="arrow-right"></i>
-          </button>
-
-          <!-- Continue Shopping -->
-          <div class="continue-shopping" id="continue-shopping">
-            <i data-lucide="arrow-left"></i>
-            <span>Lanjut Belanja</span>
-          </div>
-        </footer>
-      </aside>
+        </div>
+      </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Tab Content: Settings -->
+    <div class="tab-content" id="settings-tab">
+      <h3 class="mb-4">Pengaturan Akun</h3>
+      <div class="settings-form">
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" value="Admin User" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" value="admin@freshfruits.com" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+          <label>Nomor Telepon</label>
+          <input type="tel" value="(555) 123-4567" placeholder="Enter your phone">
+        </div>
+        <button class="btn-save">Save Changes</button>
+      </div>
+    </div>
 
-    <!-- Main Application Script (ES6 Modules) -->
-    <script type="module" src="../core/js/app.js"></script>
-  </body>
-</html>
+    <div class="text-center mt-5">
+      <button id="logout-btn" class="btn btn-outline-danger px-5">
+        Keluar dari Akun
+      </button>
+    </div>
+  </div>
+</section>

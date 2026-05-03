@@ -1,458 +1,115 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Detail - FreshFruits</title>
+<!-- Product Detail Page Content Fragment -->
+<!-- This file is loaded dynamically by the router into #content -->
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<!-- Breadcrumb Navigation (Dynamic) -->
+<div class="breadcrumb-container">
+    <div class="breadcrumb-wrapper">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" id="product-detail-breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/" class="breadcrumb-link" data-navigate="/">
+                        <i class="bi bi-house-door breadcrumb-home-icon"></i>
+                        <span>Beranda</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/shop" class="breadcrumb-link" data-navigate="/shop">
+                        <span>Semua Produk</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/shop" class="breadcrumb-link" data-navigate="/shop" id="breadcrumb-category">
+                        <span>Kategori</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <span class="breadcrumb-link" id="breadcrumb-product-name">Detail Produk</span>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
-    <!-- Main Stylesheet (imports all modular CSS) -->
-    <link rel="stylesheet" href="../core/css/main.css" />
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
-  </head>
-  <body>
-    <!-- Header -->
-    <header id="header-placeholder" class="sticky-top shadow-sm"></header>
-
-    <!-- Main Content -->
-    <main id="content" class="app-content" role="main">
-      <!-- Product Detail Page -->
-      <main class="product-detail-main">
-        <div class="container">
-          <div class="product-detail-content">
-            <!-- Product Image Gallery -->
-            <div class="product-gallery">
-              <div class="main-image-container">
-                <img id="product-main-image" src="" alt="" class="main-product-image">
-                <div class="product-badge" id="product-badge" style="display: none;"></div>
-              </div>
-              <div class="thumbnail-gallery" id="thumbnail-gallery">
-                <!-- Thumbnails will be loaded dynamically -->
-              </div>
-            </div>
-
-            <!-- Product Information -->
-            <div class="product-info">
-              <nav class="breadcrumb">
-                <a href="#" data-page="home">Home</a>
-                <span>></span>
-                <a href="#" data-page="shop">Shop</a>
-                <span>></span>
-                <span id="breadcrumb-name">Product</span>
-              </nav>
-
-              <h1 id="product-name" class="product-title">Product Name</h1>
-
-              <div class="product-meta">
-                <div class="product-rating" id="product-rating">
-                  <!-- Stars will be loaded here -->
-                </div>
-                <span id="product-category" class="product-category">Category</span>
-              </div>
-
-              <div class="product-price" id="product-price-section">
-                <span class="current-price" id="current-price">$0.00</span>
-                <span class="original-price" id="original-price" style="display: none;">$0.00</span>
-              </div>
-
-              <div class="product-description" id="product-description">
-                <!-- Description will be loaded here -->
-              </div>
-
-              <div class="product-stock" id="product-stock">
-                <span class="stock-status" id="stock-status">In Stock</span>
-                <span class="stock-quantity" id="stock-quantity">(5 available)</span>
-              </div>
-
-              <div class="quantity-selector">
-                <label>Quantity:</label>
-                <div class="quantity-controls">
-                  <input type="number" id="quantity-input" value="1" min="1" max="10">
-                </div>
-              </div>
-
-              <div class="product-actions">
-                <button class="btn primary add-to-cart-btn" id="add-to-cart-btn">
-                  <i data-lucide="shopping-cart"></i>
-                  Add to Cart
-                </button>
-                <button class="btn secondary add-to-cart-btn" id="wishlist-btn">
-                  <i data-lucide="heart"></i>
-                  Add to Wishlist
-                </button>
-              </div>
-
-              <div class="product-features">
-                <div class="feature-item">
-                  <i data-lucide="truck"></i>
-                  <span>Free shipping on orders over $50</span>
-                </div>
-                <div class="feature-item">
-                  <i data-lucide="refresh-cw"></i>
-                  <span>30-day return policy</span>
-                </div>
-                <div class="feature-item">
-                  <i data-lucide="shield-check"></i>
-                  <span>1-year warranty included</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product Tabs -->
-          <div class="product-tabs">
-            <div class="tab-buttons">
-              <button class="tab-btn active" data-tab="description">Description</button>
-              <button class="tab-btn" data-tab="nutrition">Nutrition Info</button>
-              <button class="tab-btn" data-tab="reviews">Reviews</button>
-            </div>
-
-            <div class="tab-content">
-              <div class="tab-panel active" id="tab-description">
-                <h3>Description</h3>
-                <div id="detailed-description" class="description-content">
-                  <p>Experience the unparalleled freshness and natural sweetness of our premium selected fruits. Each piece is hand-picked at peak ripeness to ensure maximum flavor and nutritional value.</p>
-
-                  <p>Our fruits are sourced directly from trusted local farms that follow sustainable agricultural practices. We prioritize quality over quantity, selecting only the finest specimens that meet our rigorous standards for taste, appearance, and nutritional content.</p>
-
-                  <h4>Key Features:</h4>
-                  <ul>
-                    <li>Premium grade selection</li>
-                    <li>Fresh from farm to table</li>
-                    <li>Naturally ripened for optimal taste</li>
-                    <li>Rich in vitamins and antioxidants</li>
-                    <li>Sustainably grown without harmful pesticides</li>
-                  </ul>
-
-                  <p>Whether you're looking to maintain a healthy lifestyle, prepare nutritious meals, or simply enjoy nature's perfect snack, our fruits deliver exceptional quality that you'll taste in every bite.</p>
-                </div>
-              </div>
-
-              <div class="tab-panel" id="tab-nutrition">
-                <h3>Nutrition Information</h3>
-                <div class="nutrition-intro">
-                  <p>Per 100g serving. Values may vary slightly depending on fruit size and ripeness.</p>
-                </div>
-                <div class="nutrition-table">
-                  <div class="nutrition-row header-row">
-                    <span>Nutrient</span>
-                    <span>Amount per 100g</span>
-                  </div>
-                  <div class="nutrition-row">
-                    <span>Energy (Calories)</span>
-                    <span id="calories">52 kcal</span>
-                  </div>
-                  <div class="nutrition-row">
-                    <span>Carbohydrates</span>
-                    <span id="carbs">13.8g</span>
-                  </div>
-                  <div class="nutrition-row">
-                    <span>Sugars (Natural)</span>
-                    <span id="sugars">10.4g</span>
-                  </div>
-                  <div class="nutrition-row">
-                    <span>Dietary Fiber</span>
-                    <span id="fiber">1.4g</span>
-                  </div>
-                  <div class="nutrition-row">
-                    <span>Protein</span>
-                    <span id="protein">0.7g</span>
-                  </div>
-                  <div class="nutrition-row">
-                    <span>Fat</span>
-                    <span id="fat">0.2g</span>
-                  </div>
-                  <div class="nutrition-row">
-                    <span>Vitamin C</span>
-                    <span id="vitamin-c">53.2mg (59% DV)</span>
-                  </div>
-                  <div class="nutrition-row">
-                    <span>Potassium</span>
-                    <span id="potassium">116mg</span>
-                  </div>
-                  <div class="nutrition-row">
-                    <span>Calcium</span>
-                    <span id="calcium">6mg</span>
-                  </div>
-                </div>
-
-                <div class="nutrition-benefits">
-                  <h4>Health Benefits:</h4>
-                  <ul>
-                    <li>Rich source of Vitamin C for immune system support</li>
-                    <li>Contains natural antioxidants</li>
-                    <li>Good source of dietary fiber</li>
-                    <li>Naturally low in fat and sodium</li>
-                    <li>Hydrating and refreshing</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="tab-panel" id="tab-reviews">
-                <h3>Customer Reviews</h3>
-                <div class="reviews-summary">
-                  <div class="rating-summary">
-                    <span class="average-rating" id="average-rating">4.5</span>
-                    <div class="stars" id="average-stars">
-                      <i data-lucide="star" class="star filled"></i>
-                      <i data-lucide="star" class="star filled"></i>
-                      <i data-lucide="star" class="star filled"></i>
-                      <i data-lucide="star" class="star filled"></i>
-                      <i data-lucide="star" class="star half"></i>
-                    </div>
-                    <span class="total-reviews" id="total-reviews">23 reviews</span>
-                  </div>
-                  <div class="rating-breakdown">
-                    <div class="rating-bar">
-                      <span>5 Stars</span>
-                      <div class="bar">
-                        <div class="fill" style="width: 65%"></div>
-                      </div>
-                      <span>15</span>
-                    </div>
-                    <div class="rating-bar">
-                      <span>4 Stars</span>
-                      <div class="bar">
-                        <div class="fill" style="width: 25%"></div>
-                      </div>
-                      <span>6</span>
-                    </div>
-                    <div class="rating-bar">
-                      <span>3 Stars</span>
-                      <div class="bar">
-                        <div class="fill" style="width: 6%"></div>
-                      </div>
-                      <span>1</span>
-                    </div>
-                    <div class="rating-bar">
-                      <span>2 Stars</span>
-                      <div class="bar">
-                        <div class="fill" style="width: 2%"></div>
-                      </div>
-                      <span>0</span>
-                    </div>
-                    <div class="rating-bar">
-                      <span>1 Star</span>
-                      <div class="bar">
-                        <div class="fill" style="width: 2%"></div>
-                      </div>
-                      <span>1</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="reviews-list" id="reviews-list">
-                  <div class="review-item">
-                    <div class="review-header">
-                      <div class="review-author">
-                        <span class="author-name">Sarah Johnson</span>
-                        <div class="author-rating">
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                        </div>
-                      </div>
-                      <span class="review-date">2 weeks ago</span>
-                    </div>
-                    <p class="review-content">Absolutely delicious! The fruit arrived perfectly ripe and incredibly fresh. The flavor was exceptional - sweet, juicy, and just the right texture. Will definitely order again!</p>
-                  </div>
-
-                  <div class="review-item">
-                    <div class="review-header">
-                      <div class="review-author">
-                        <span class="author-name">Mike Chen</span>
-                        <div class="author-rating">
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                        </div>
-                      </div>
-                      <span class="review-date">1 month ago</span>
-                    </div>
-                    <p class="review-content">Great quality fruits! Fast delivery and excellent packaging. The fruits were fresh and tasted amazing. The nutritional info was helpful too. Very satisfied with my purchase.</p>
-                  </div>
-
-                  <div class="review-item">
-                    <div class="review-header">
-                      <div class="review-author">
-                        <span class="author-name">Emma Rodriguez</span>
-                        <div class="author-rating">
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                          <i data-lucide="star" class="star filled"></i>
-                        </div>
-                      </div>
-                      <span class="review-date">3 weeks ago</span>
-                    </div>
-                    <p class="review-content">Perfect for healthy eating! These fruits are incredibly fresh and nutritious. I love how detailed the nutrition information is. Great for meal prep and maintaining a healthy lifestyle.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Related Products -->
-          <section class="related-products">
-            <h2>You Might Also Like</h2>
-            <div class="related-products-grid" id="related-products-grid">
-              <!-- Related products will be loaded here -->
-            </div>
-          </section>
+<section class="product-detail-page">
+  <div class="container">
+    <div class="product-detail-content">
+      <!-- Product Image Gallery -->
+      <div class="product-gallery">
+        <div class="main-image-container">
+          <img id="detail-product-image" src="" alt="" class="main-product-image">
+          <div class="product-badge" id="detail-product-badge" style="display: none;"></div>
         </div>
-      </main>
-    </main>
+        <div class="thumbnail-gallery" id="detail-thumbnail-gallery">
+          <!-- Thumbnails will be loaded dynamically -->
+        </div>
+      </div>
 
-    <!-- Footer -->
-    <div id="footer-placeholder"></div>
+      <!-- Product Information -->
+      <div class="product-info">
 
-    <!-- Shopping Cart Overlay -->
-    <div
-      id="cart-overlay"
-      class="cart-overlay hidden"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="cart-title"
-      aria-hidden="true"
-    >
-      <!-- Cart Sidebar -->
-      <aside
-        class="cart-sidebar"
-        role="complementary"
-        aria-label="Keranjang belanja"
-      >
-        <!-- Cart Header -->
-        <header class="cart-header">
-          <div class="cart-header-content">
-            <h2 id="cart-title" class="cart-title">
-              <i data-lucide="shopping-bag" aria-hidden="true"></i>
-              Keranjang Belanja
-            </h2>
-            <span
-              class="cart-item-count"
-              id="cart-total-items"
-              role="status"
-              aria-live="polite"
-            >
-              0 item
-            </span>
+        <h1 id="detail-product-name" class="product-title"></h1>
+
+        <div class="product-meta">
+          <div id="detail-product-rating" class="product-rating"></div>
+          <span class="reviews-count">(0 reviews)</span>
+          <span id="detail-product-sku" class="product-sku"></span>
+        </div>
+
+        <p id="detail-product-desc" class="product-description"></p>
+
+        <div class="price-section">
+          <span id="detail-current-price" class="current-price"></span>
+          <span id="detail-original-price" class="original-price"></span>
+          <span id="detail-discount-percent" class="discount-percent"></span>
+        </div>
+
+        <div class="stock-status">
+          <i data-lucide="check-circle" class="in-stock-icon"></i>
+          <span id="detail-stock-text">In Stock</span>
+        </div>
+
+        <div class="quantity-section">
+          <label>Quantity:</label>
+          <div class="quantity-selector">
+            <button class="quantity-btn" id="detail-decrease-qty">-</button>
+            <input type="number" id="detail-quantity" class="quantity-input" value="1" min="1" max="99">
+            <button class="quantity-btn" id="detail-increase-qty">+</button>
           </div>
-          <button
-            id="close-cart"
-            class="close-cart-btn"
-            aria-label="Tutup keranjang belanja"
-            title="Tutup"
-          >
-            <i data-lucide="x" aria-hidden="true"></i>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn-primary btn-add-cart-detail" id="detail-add-to-cart">
+            <i data-lucide="shopping-cart"></i>
+            <span>Add to Cart</span>
           </button>
-
-          <!-- Free Shipping Progress -->
-          <div
-            class="cart-progress"
-            id="cart-progress"
-            style="display: none"
-          ></div>
-        </header>
-
-        <!-- Cart Body (Items List) -->
-        <main class="cart-body">
-          <div
-            class="cart-items"
-            id="cart-items"
-            role="list"
-            aria-label="Daftar produk di keranjang"
-          >
-            <!-- Cart items will be dynamically inserted here by JavaScript -->
-            <!-- Empty state will show if no items -->
-          </div>
-        </main>
-
-        <!-- Cart Footer (Summary & Checkout) -->
-        <footer class="cart-footer">
-          <!-- Promo Code Section -->
-          <div class="promo-code-section">
-            <div class="promo-code-input-wrapper" id="promo-input-wrapper">
-              <input
-                type="text"
-                class="promo-code-input"
-                id="promo-code-input"
-                placeholder="Masukkan kode promo"
-                aria-label="Promo code"
-              />
-              <button class="btn-apply-promo" id="btn-apply-promo">
-                Gunakan
-              </button>
-            </div>
-
-            <!-- Promo Applied State -->
-            <div class="promo-applied" id="promo-applied" style="display: none">
-              <div class="promo-applied-text">
-                <i data-lucide="tag"></i>
-                <span class="promo-code-text"></span>
-              </div>
-              <button class="btn-remove-promo" id="btn-remove-promo">
-                Hapus
-              </button>
-            </div>
-          </div>
-
-          <!-- Cart Summary -->
-          <div class="cart-summary">
-            <div class="summary-row">
-              <span>Subtotal</span>
-              <span id="cart-subtotal">$0.00</span>
-            </div>
-            <div class="summary-row discount" style="display: none">
-              <span>Diskon</span>
-              <span id="cart-discount">$0.00</span>
-            </div>
-            <div class="summary-row">
-              <span>Ongkos Kirim</span>
-              <span id="cart-delivery" class="delivery-fee">GRATIS</span>
-            </div>
-            <hr class="summary-divider" />
-            <div class="summary-row total-row">
-              <span>Total</span>
-              <span class="total-price" id="cart-total">$0.00</span>
-            </div>
-          </div>
-
-          <!-- Checkout Button -->
-          <button class="checkout-btn" id="checkout-btn" disabled>
-            <span>Checkout Sekarang</span>
-            <i data-lucide="arrow-right"></i>
+          <button class="btn-outline btn-wishlist-detail" id="detail-add-to-wishlist">
+            <i data-lucide="heart"></i>
+            <span>Wishlist</span>
           </button>
+        </div>
 
-          <!-- Continue Shopping -->
-          <div class="continue-shopping" id="continue-shopping">
-            <i data-lucide="arrow-left"></i>
-            <span>Lanjut Belanja</span>
-          </div>
-        </footer>
-      </aside>
+        <div class="product-features">
+          <h4>Product Features:</h4>
+          <ul id="detail-features-list">
+            <li>Fresh & High Quality</li>
+            <li>100% Organic</li>
+            <li>No Artificial Preservatives</li>
+          </ul>
+        </div>
+
+        <div class="nutrition-info">
+          <h4>Nutritional Information:</h4>
+          <p id="detail-nutrition-text"></p>
+        </div>
+      </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Main Application Script (ES6 Modules) -->
-    <script type="module" src="../core/js/app.js"></script>
-  </body>
-</html>
+    <!-- Related Products Section -->
+    <section class="related-products mt-5">
+      <h3 class="section-title mb-4">Related Products</h3>
+      <div class="products-grid" id="related-products-grid">
+        <!-- Related products will be loaded dynamically -->
+      </div>
+    </section>
+  </div>
+</section>
