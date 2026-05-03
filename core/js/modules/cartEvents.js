@@ -8,32 +8,33 @@ import {
   increaseQuantity,
   decreaseQuantity,
   toggleCart,
+  removeFromCart,
+  applyPromoCode,
+  removePromoCode,
 } from '../../components/cart.js'
 import { toast } from '../utils/toast.js'
 
 export function handleCartActions(e) {
-  if (e.target.closest('.add-to-cart')) {
-    const button = e.target.closest('.add-to-cart')
-    const productId = parseInt(button.dataset.id)
-    addToCart(productId)
+  if (e.target.closest('.add-to-cart-btn')) {
+    const button = e.target.closest('.add-to-cart-btn')
+    const productId = parseInt(button.dataset.productId, 10)
+    if (!Number.isNaN(productId)) addToCart(productId)
   }
   if (e.target.closest('.dec')) {
     const button = e.target.closest('.dec')
-    const productId = parseInt(button.dataset.id)
-    decreaseQuantity(productId)
+    const productId = parseInt(button.dataset.id, 10)
+    if (!Number.isNaN(productId)) decreaseQuantity(productId)
   }
   if (e.target.closest('.inc')) {
     const button = e.target.closest('.inc')
-    const productId = parseInt(button.dataset.id)
-    increaseQuantity(productId)
+    const productId = parseInt(button.dataset.id, 10)
+    if (!Number.isNaN(productId)) increaseQuantity(productId)
   }
   if (e.target.closest('.cart-item-delete')) {
     const button = e.target.closest('.cart-item-delete')
-    const productId = parseInt(button.dataset.id)
-    if (confirm('Remove this item from cart?')) {
-      import('../../components/cart.js').then(module => {
-        module.removeFromCart(productId)
-      })
+    const productId = parseInt(button.dataset.id, 10)
+    if (!Number.isNaN(productId) && confirm('Remove this item from cart?')) {
+      removeFromCart(productId)
     }
   }
   if (e.target.closest('.checkout-btn') || e.target.closest('#checkout-btn')) {
@@ -84,33 +85,35 @@ export function setupCartToggle() {
 }
 
 export function handleWishlistActions(e) {
-  if (e.target.closest('.product-wishlist')) {
-    e.stopPropagation()
-    const productId = parseInt(
-      e.target.closest('.product-wishlist').dataset.wishlistId
-    )
-    import('../state.js').then(stateModule => {
-      const isAdded = stateModule.toggleWishlist(productId)
-      const wishlistBtn = e.target.closest('.product-wishlist')
-      wishlistBtn.classList.toggle('active', isAdded)
-      wishlistBtn.classList.add('animate')
-      setTimeout(() => wishlistBtn.classList.remove('animate'), 600)
-      if (window.lucide) {
-        lucide.createIcons()
-      }
+  const wishlistBtn = e.target.closest('.wishlist-btn')
+  if (!wishlistBtn) return
+  const rawId = wishlistBtn.dataset.productId
+  if (rawId === undefined || rawId === '') return
 
-      const wishlistBadge = document.getElementById('wishlist-badge')
-      if (wishlistBadge) {
-        wishlistBadge.textContent = stateModule.getWishlist().length
-      }
+  e.stopPropagation()
+  const productId = parseInt(rawId, 10)
+  if (Number.isNaN(productId)) return
 
-      if (isAdded) {
-        toast.success('Ditambahkan ke wishlist!', 2000)
-      } else {
-        toast.info('Dihapus dari wishlist', 2000)
-      }
-    })
-  }
+  import('../state.js').then(stateModule => {
+    const isAdded = stateModule.toggleWishlist(productId)
+    wishlistBtn.classList.toggle('active', isAdded)
+    wishlistBtn.classList.add('animate')
+    setTimeout(() => wishlistBtn.classList.remove('animate'), 600)
+    if (window.lucide) {
+      lucide.createIcons()
+    }
+
+    const wishlistBadge = document.getElementById('wishlist-badge')
+    if (wishlistBadge) {
+      wishlistBadge.textContent = stateModule.getWishlist().length
+    }
+
+    if (isAdded) {
+      toast.success('Ditambahkan ke wishlist!', 2000)
+    } else {
+      toast.info('Dihapus dari wishlist', 2000)
+    }
+  })
 }
 
 export function setupPromoCodeHandlers() {
@@ -119,23 +122,19 @@ export function setupPromoCodeHandlers() {
       const input = document.getElementById('promo-code-input')
       const code = input?.value?.trim()
       if (code) {
-        import('../../components/cart.js').then(cartModule => {
-          const success = cartModule.applyPromoCode(code)
-          if (success) {
-            toast.success(`Kode promo "${code}" berhasil digunakan!`)
-          } else {
-            toast.error('Kode promo tidak valid atau sudah kadaluarsa')
-          }
-        })
+        const success = applyPromoCode(code)
+        if (success) {
+          toast.success(`Kode promo "${code}" berhasil digunakan!`)
+        } else {
+          toast.error('Kode promo tidak valid atau sudah kadaluarsa')
+        }
       } else {
         toast.warning('Masukkan kode promo terlebih dahulu')
       }
     }
     if (e.target.closest('#btn-remove-promo')) {
-      import('../../components/cart.js').then(cartModule => {
-        cartModule.removePromoCode()
-        toast.info('Kode promo dihapus')
-      })
+      removePromoCode()
+      toast.info('Kode promo dihapus')
     }
     if (e.target.closest('#continue-shopping')) {
       toggleCart(false)

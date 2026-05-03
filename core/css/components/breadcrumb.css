@@ -4,14 +4,14 @@
    ======================================== */
 
 .breadcrumb-container {
-    background-color: var(--bg-card);
+    background-color: var(--surface-card-bg);
     padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--color-border-primary);
     margin-bottom: 20px;
 }
 
 .breadcrumb-wrapper {
-    max-width: var(--container-width);
+    max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 0 16px;
 }
@@ -24,7 +24,7 @@
     margin: 0;
     padding: 0;
     font-size: 0.875rem;
-    color: var(--text-muted);
+    color: var(--color-text-tertiary);
     gap: 8px;
 }
 
@@ -36,13 +36,13 @@
 
 .breadcrumb-item + .breadcrumb-item::before {
     content: "/";
-    color: var(--text-muted);
+    color: var(--color-text-tertiary);
     font-weight: 400;
     margin-right: 4px;
 }
 
 .breadcrumb-link {
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     text-decoration: none;
     transition: all 0.2s ease;
     font-weight: 400;
@@ -52,17 +52,17 @@
 }
 
 .breadcrumb-link:hover {
-    color: var(--primary-color);
+    color: var(--color-primary);
     text-decoration: underline;
 }
 
 .breadcrumb-item.active {
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     font-weight: 600;
 }
 
 .breadcrumb-item.active .breadcrumb-link {
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     text-decoration: none;
     cursor: default;
 }
@@ -74,11 +74,11 @@
 /* Icon styling for home link */
 .breadcrumb-home-icon {
     font-size: 1rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
 }
 
 .breadcrumb-link:hover .breadcrumb-home-icon {
-    color: var(--primary-color);
+    color: var(--color-primary);
 }
 
 /* Mobile Responsive */
@@ -104,7 +104,7 @@
 
 /* Dark Mode Support */
 [data-theme="dark"] .breadcrumb-container {
-    background-color: var(--bg-card);
+    background-color: var(--surface-card-bg);
     border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -113,7 +113,7 @@
 }
 
 [data-theme="dark"] .breadcrumb-link:hover {
-    color: var(--primary-light);
+    color: var(--color-primary-bright);
 }
 
 [data-theme="dark"] .breadcrumb-item.active {

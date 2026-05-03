@@ -4,19 +4,17 @@
    =========================================== */
 
 import { loadPage } from '../router.js'
+import { STORAGE_KEYS } from '../constants.js'
 
-// Credentials
 const VALID_USERNAME = 'admin'
 const VALID_PASSWORD = 'admin'
-const USER_DATA_KEY = 'freshfruits_user'
 
 export function isLoggedIn() {
-  const userData = localStorage.getItem(USER_DATA_KEY)
-  return userData !== null
+  return localStorage.getItem(STORAGE_KEYS.USER) !== null
 }
 
 export function getCurrentUser() {
-  const userData = localStorage.getItem(USER_DATA_KEY)
+  const userData = localStorage.getItem(STORAGE_KEYS.USER)
   return userData ? JSON.parse(userData) : null
 }
 
@@ -28,7 +26,7 @@ export function login(username, password) {
       name: 'Admin User',
       loginTime: new Date().toISOString(),
     }
-    localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData))
+    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(userData))
     updateAuthButton()
     return { success: true }
   }
@@ -36,7 +34,7 @@ export function login(username, password) {
 }
 
 export function logout() {
-  localStorage.removeItem(USER_DATA_KEY)
+  localStorage.removeItem(STORAGE_KEYS.USER)
   updateAuthButton()
   loadPage('home')
 }
@@ -48,7 +46,7 @@ export function updateAuthButton() {
   const wishlistBadge = document.getElementById('wishlist-badge')
   if (wishlistBadge) {
     const wishlist = JSON.parse(
-      localStorage.getItem('freshfruits_wishlist') || '[]'
+      localStorage.getItem(STORAGE_KEYS.WISHLIST) || '[]'
     )
     wishlistBadge.textContent = wishlist.length
   }

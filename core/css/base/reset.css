@@ -26,7 +26,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color var(--transition-base), color var(--transition-base);
-  padding-top: var(--header-height);
 }
 
 /* Container - Standardized (Tokopedia/Blibli inspired) */

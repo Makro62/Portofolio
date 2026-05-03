@@ -15,6 +15,7 @@ export const PROMO_CODES = {
 }
 
 export const STORAGE_KEYS = {
+  USER: 'freshfruits_user',
   WISHLIST: 'freshfruits_wishlist',
   CART: 'freshfruits_cart',
 }

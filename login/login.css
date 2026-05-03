@@ -48,7 +48,7 @@
 }
 
 .login-header p {
-  color: var(--color-text-tertiary);
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
 }
 
@@ -138,7 +138,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
   font-size: 0.875rem;
+  width: 100%;
 }
 
 .checkbox-label {
@@ -146,7 +149,12 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  color: var(--color-text-tertiary);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.checkbox-label span {
+  color: inherit;
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -270,9 +278,15 @@
 
 .image-content {
   text-align: center;
-  color: white;
+  color: var(--color-static-white);
   position: relative;
   z-index: 1;
+}
+
+.login-image .image-content i,
+.login-image .image-content svg {
+  color: var(--color-static-white);
+  stroke: currentColor;
 }
 
 .image-content i {
@@ -285,11 +299,16 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  color: var(--color-static-white);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .image-content p {
-  font-size: 1.1rem;
-  opacity: 0.95;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.96);
+  max-width: 22rem;
+  margin-inline: auto;
 }
 
 /* Responsive */
@@ -304,5 +323,42 @@
   
   .login-card {
     padding: 2rem;
+  }
+}
+
+/* ===========================================
+   Halaman login — posisi di area konten (#content)
+   Menghindari min-height 100vh + padding .app-content (scroll/jarak dobel)
+   =========================================== */
+
+#content[data-page="login"].app-content {
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  padding-top: clamp(0.75rem, 2vw, 1.25rem);
+  padding-bottom: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+#content[data-page="login"] .breadcrumb-container {
+  margin-bottom: 0;
+  padding-top: 4px;
+  padding-bottom: 8px;
+}
+
+#content[data-page="login"] .login-section {
+  min-height: calc(100vh - 10rem);
+  min-height: calc(100dvh - 10rem);
+  padding: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  #content[data-page="login"] .login-section {
+    min-height: calc(100vh - 8rem);
+    min-height: calc(100dvh - 8rem);
+    padding: 0.5rem 0 1rem;
+  }
+
+  #content[data-page="login"] .login-container {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 100%;
   }
 }

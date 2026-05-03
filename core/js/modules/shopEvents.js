@@ -4,7 +4,12 @@
    =========================================== */
 
 import { fruits } from '../data/products.js';
-import { setSelectedCategory, setSearchTerm, setSortType } from '../state.js';
+import {
+  setSelectedCategory,
+  setSearchTerm,
+  setSortType,
+  getSelectedCategory,
+} from '../state.js';
 import { renderCategories, renderProducts, updateCategoryCarousel } from '../../components/products.js';
 import { loadPage } from '../router.js';
 
@@ -12,6 +17,11 @@ import { loadPage } from '../router.js';
  * Setup shop-specific events
  */
 export function setupShopEvents() {
+  const categorySelect = document.getElementById('category-select');
+  if (categorySelect) {
+    categorySelect.value = getSelectedCategory();
+  }
+
   // Init banner slideshow
   initBannerSlideshow();
 
@@ -90,6 +100,15 @@ export function setupShopEvents() {
     clearFilters.addEventListener('click', () => {
       setSelectedCategory('all');
       setSearchTerm('');
+      const categorySelect = document.getElementById('category-select');
+      if (categorySelect) categorySelect.value = 'all';
+      const searchInputs = [
+        document.getElementById('search-input'),
+        document.getElementById('mobile-search-input'),
+      ].filter(Boolean);
+      searchInputs.forEach(el => {
+        el.value = '';
+      });
       renderCategories();
       renderProducts();
       updateCategoryCarousel();

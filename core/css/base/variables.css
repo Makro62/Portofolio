@@ -183,13 +183,17 @@
   --color-text-secondary: #c9d1d9;
   --color-text-tertiary: #8b949e;
   --color-text-muted: #6e7681;
-  --color-text-inverse: #0d1117;
+  /* Tetap terang: dipakai teks di tombol primer, badge, footer gelap, seleksi */
+  --color-text-inverse: #ffffff;
   
   /* Colors - Border (Dark Mode) */
   --color-border-primary: #30363d;
   --color-border-secondary: #21262d;
   --color-border-focus: #03AC0E;
   
+  /* Hover tombol/daerah primer di atas bg gelap */
+  --color-primary-light: rgba(3, 172, 14, 0.22);
+
   /* Header (Dark Mode) */
   --header-bg: var(--color-bg-secondary);
   --header-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);

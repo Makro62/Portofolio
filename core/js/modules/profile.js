@@ -5,6 +5,7 @@
 
 import { getCurrentUser } from './auth.js'
 import { getOrderHistory, getWishlist } from '../state.js'
+import { escapeHtml, isValidImageUrl } from '../utils/escapeHtml.js'
 
 let profileEventsBound = false
 
@@ -53,6 +54,7 @@ function renderProfileOrders() {
   orderHistory.forEach(order => {
     const orderCard = document.createElement('div')
     orderCard.className = 'order-card'
+
     orderCard.innerHTML = `
       <div class="order-header">
         <div>
@@ -65,18 +67,22 @@ function renderProfileOrders() {
       </div>
       <div class="order-items">
         ${order.items
-          .map(
-            item => `
+          .map(item => {
+            const safeImage = isValidImageUrl(item.image)
+              ? item.image
+              : 'images/placeholder.jpg'
+            const safeName = escapeHtml(item.name)
+            return `
           <div class="order-item">
-            <img src="${item.image}" alt="${item.name}">
+            <img src="${safeImage}" alt="${safeName}">
             <div class="order-item-info">
-              <h4>${item.name}</h4>
+              <h4>${safeName}</h4>
               <p>Qty: ${item.quantity} × $${item.priceAtPurchase.toFixed(2)}</p>
             </div>
             <p class="order-item-price">$${(item.quantity * item.priceAtPurchase).toFixed(2)}</p>
           </div>
         `
-          )
+          })
           .join('')}
       </div>
       <div class="order-footer">
@@ -104,16 +110,24 @@ function renderProfileWishlist() {
   }
 
   wishlistEl.innerHTML = wishlist
-    .map(
-      item => `
+    .map(item => {
+      const safeImage = isValidImageUrl(item.image)
+        ? item.image
+        : 'images/placeholder.jpg'
+      const safeName = escapeHtml(item.name)
+      const priceLabel =
+        typeof item.price === 'number'
+          ? item.price.toFixed(2)
+          : escapeHtml(String(item.price))
+      return `
     <div class="wishlist-item">
-      <img src="${item.image}" alt="${item.name}">
-      <h3>${item.name}</h3>
-      <p class="wishlist-price">$${item.price}</p>
+      <img src="${safeImage}" alt="${safeName}">
+      <h3>${safeName}</h3>
+      <p class="wishlist-price">$${priceLabel}</p>
       <button class="btn-add-cart">Add to Cart</button>
     </div>
   `
-    )
+    })
     .join('')
 }
 

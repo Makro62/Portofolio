@@ -3,7 +3,7 @@
    Form-related event handlers
    =========================================== */
 
-import { login } from './auth.js'
+import { login, logout } from './auth.js'
 import { loadPage } from '../router.js'
 import { toast } from '../utils/toast.js'
 
@@ -56,18 +56,10 @@ function handleLogin(form) {
   }
 }
 
-async function handleLogout() {
-  if (confirm('Apakah Anda yakin ingin logout?')) {
-    try {
-      const authModule = await import('./auth.js')
-      authModule.logout()
-      toast.success('Anda telah logout')
-      loadPage('home')
-    } catch (error) {
-      console.error('Logout error:', error)
-      toast.error('Gagal logout. Silakan coba lagi.')
-    }
-  }
+function handleLogout() {
+  if (!confirm('Apakah Anda yakin ingin logout?')) return
+  logout()
+  toast.success('Anda telah logout')
 }
 
 function togglePasswordVisibility() {

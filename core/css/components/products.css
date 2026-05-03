@@ -29,6 +29,44 @@
   transform: translateY(-2px);
 }
 
+/* Kartu produk (grid shop / flash sale): wrapper gambar + tombol overlay */
+.product-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--color-bg-secondary);
+}
+
+.product-image-wrapper .product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-image-wrapper .quick-view-btn {
+  position: absolute;
+  bottom: var(--spacing-2);
+  right: var(--spacing-2);
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--surface-card-bg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  z-index: 2;
+}
+
+.product-image-wrapper .quick-view-btn:hover {
+  background: var(--color-primary-light);
+  transform: scale(1.08);
+}
+
 .product-img {
   width: 100%;
   aspect-ratio: 1/1;
@@ -40,6 +78,7 @@
   position: absolute;
   top: var(--spacing-2);
   right: var(--spacing-2);
+  z-index: 3;
   background: var(--color-danger);
   color: var(--color-static-white);
   padding: var(--spacing-1) var(--spacing-2);

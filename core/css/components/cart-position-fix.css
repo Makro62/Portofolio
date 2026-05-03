@@ -1,0 +1,46 @@
+/* ===========================================
+   CART DRAWER — paksa anchor kanan viewport
+   Mengalahkan konflik Bootstrap / urutan flex / cache
+   Penting: reset penuh overlay (bukan dialog terpusat dari accessibility.css)
+   =========================================== */
+
+#cart-overlay.cart-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  transform: none !important;
+  max-width: none !important;
+  max-height: none !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+#cart-overlay.cart-overlay:not(.hidden) {
+  display: block !important;
+  justify-content: unset !important;
+  align-items: unset !important;
+}
+
+#cart-overlay > aside.cart-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  left: auto !important;
+  width: min(100vw, 480px);
+  max-width: 480px;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  transform: translateX(100%) !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+#cart-overlay:not(.hidden) > aside.cart-sidebar {
+  transform: translateX(0) !important;
+}
+
+@media (max-width: 768px) {
+  #cart-overlay > aside.cart-sidebar {
+    max-width: 100%;
+    width: 100%;
+  }
+}

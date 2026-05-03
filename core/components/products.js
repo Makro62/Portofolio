@@ -12,6 +12,13 @@ import {
 } from '../js/state.js'
 import { toast } from '../js/utils/toast.js'
 import { loadPage } from '../js/router.js'
+import { escapeHtml, isValidImageUrl } from '../js/utils/escapeHtml.js'
+
+function discountPercent(product) {
+  const orig = product.originalPrice
+  if (typeof orig !== 'number' || orig <= 0 || orig <= product.price) return 0
+  return Math.round(((orig - product.price) / orig) * 100)
+}
 
 /**
  * Render category filters
@@ -24,15 +31,16 @@ export function renderCategories() {
   const searchTerm = getSearchTerm()
 
   let html = `
-    <button class="category-filter ${selectedCategory === 'all' ? 'active' : ''}" data-category="all">
+    <button type="button" class="category-filter-btn ${selectedCategory === 'all' ? 'active' : ''}" data-category="all">
       All Fruits
     </button>
   `
 
   categories.forEach(category => {
+    if (category.id === 'all') return
     const isActive = selectedCategory === category.id ? 'active' : ''
     html += `
-      <button class="category-filter ${isActive}" data-category="${category.id}">
+      <button type="button" class="category-filter-btn ${isActive}" data-category="${category.id}">
         ${category.icon || ''} ${category.name}
       </button>
     `
@@ -41,10 +49,12 @@ export function renderCategories() {
   categoryFilters.innerHTML = html
 
   // Add event listeners
-  categoryFilters.querySelectorAll('.category-filter').forEach(btn => {
+  categoryFilters.querySelectorAll('.category-filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const category = btn.dataset.category
       setSelectedCategory(category)
+      const headerCategory = document.getElementById('category-select')
+      if (headerCategory) headerCategory.value = category
       renderCategories()
       renderProducts()
       updateCategoryCarousel()
@@ -63,6 +73,14 @@ export function renderProducts() {
   const searchTerm = getSearchTerm().toLowerCase()
   const sortType = getSortType()
 
+  // Ambil nilai filter harga langsung dari DOM jika ada
+  const minInput = document.getElementById('price-min')
+  const maxInput = document.getElementById('price-max')
+  const minPrice =
+    minInput && minInput.value !== '' ? parseFloat(minInput.value) : 0
+  const maxPrice =
+    maxInput && maxInput.value !== '' ? parseFloat(maxInput.value) : Infinity
+
   // Filter products
   let filteredProducts = fruits.filter(product => {
     const matchesCategory =
@@ -71,11 +89,18 @@ export function renderProducts() {
       searchTerm === '' ||
       product.name.toLowerCase().includes(searchTerm) ||
       product.description.toLowerCase().includes(searchTerm)
-    return matchesCategory && matchesSearch
+    const matchesPrice = product.price >= minPrice && product.price <= maxPrice
+    return matchesCategory && matchesSearch && matchesPrice
   })
 
   // Sort products
   filteredProducts = sortProducts(filteredProducts, sortType)
+
+  // Update count (Menampilkan jumlah produk yang ditemukan)
+  const resultsCount = document.getElementById('results-count')
+  if (resultsCount) {
+    resultsCount.innerHTML = `Showing <strong>${filteredProducts.length}</strong> products`
+  }
 
   if (filteredProducts.length === 0) {
     productsGrid.innerHTML = `
@@ -119,25 +144,27 @@ function sortProducts(products, sortType) {
  * Create product card HTML
  */
 function createProductCard(product) {
-  const discount = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100
-  )
+  const discount = discountPercent(product)
+  const safeImage = isValidImageUrl(product.image)
+    ? product.image
+    : 'images/placeholder.jpg'
+  const safeName = escapeHtml(product.name)
 
   return `
-    <div class="product-card" data-product-id="${product.id}">
-      <div class="product-image-wrapper">
-        <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy" />
+    <div class="product-card" data-product-id="${product.id}" role="button" tabindex="0">
+      <div class="product-image-wrapper" onclick="window.location.hash='#product-detail?id=${product.id}'">
+        <img src="${safeImage}" alt="${safeName}" class="product-img" loading="lazy" />
         ${discount > 0 ? `<span class="product-badge badge-discount">-${discount}%</span>` : ''}
         ${!product.inStock ? '<span class="product-badge badge-out">Out of Stock</span>' : ''}
-        <button class="wishlist-btn" data-product-id="${product.id}" aria-label="Add to wishlist">
+        <button type="button" class="wishlist-btn product-wishlist" data-product-id="${product.id}" aria-label="Tambah ke wishlist">
           <i data-lucide="heart"></i>
         </button>
-        <button class="quick-view-btn" data-product-id="${product.id}" aria-label="Quick view">
+        <button type="button" class="quick-view-btn" data-product-id="${product.id}" aria-label="Quick view">
           <i data-lucide="eye"></i>
         </button>
       </div>
-      <div class="product-info">
-        <h3 class="product-name">${product.name}</h3>
+      <div class="product-info" onclick="window.location.hash='#product-detail?id=${product.id}'">
+        <h3 class="product-title">${safeName}</h3>
         <div class="product-rating">
           <div class="stars">
             ${generateStars(product.rating)}
@@ -149,7 +176,7 @@ function createProductCard(product) {
           ${discount > 0 ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
         </div>
         <div class="product-actions">
-          <button class="add-to-cart-btn btn-primary" data-product-id="${product.id}" ${!product.inStock ? 'disabled' : ''}>
+          <button type="button" class="add-to-cart-btn btn-primary" data-product-id="${product.id}" ${!product.inStock ? 'disabled' : ''}>
             <i data-lucide="shopping-cart"></i>
             ${product.inStock ? 'Add to Cart' : 'Out of Stock'}
           </button>
@@ -186,6 +213,7 @@ function generateStars(rating) {
  */
 export function renderFlashSale() {
   const flashSaleContainer = document.getElementById('flash-sale-products')
+  const flashSaleContainer = document.getElementById('flash-sale-grid')
   if (!flashSaleContainer) return
 
   const flashSaleProducts = fruits
@@ -211,18 +239,59 @@ export function setupCategoryCarousel() {
   const categoryCarousel = document.querySelector('.category-carousel')
   if (!categoryCarousel) return
 
-  const prevBtn = categoryCarousel.querySelector('.carousel-prev')
-  const nextBtn = categoryCarousel.querySelector('.carousel-next')
+  const prevBtn = document.querySelector('.carousel-prev')
+  const nextBtn = document.querySelector('.carousel-next')
+  const prevBtn = document.getElementById('category-prev')
+  const nextBtn = document.getElementById('category-next')
 
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
       categoryCarousel.scrollBy({ left: -200, behavior: 'smooth' })
+      categoryCarousel.scrollBy({ left: -300, behavior: 'smooth' })
     })
   }
 
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
       categoryCarousel.scrollBy({ left: 200, behavior: 'smooth' })
+      categoryCarousel.scrollBy({ left: 300, behavior: 'smooth' })
+    })
+  }
+
+  // Tambahkan listener untuk category cards di carousel
+  categoryCarousel.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const category = card.dataset.category
+      setSelectedCategory(category)
+      renderCategories()
+      renderProducts()
+      updateCategoryCarousel()
+    })
+  })
+
+  // Setup Navigasi Flash Sale Carousel
+  const flashSaleGrid = document.getElementById('flash-sale-grid')
+  const fsPrev = document.getElementById('flash-sale-prev')
+  const fsNext = document.getElementById('flash-sale-next')
+
+  if (flashSaleGrid && fsPrev && fsNext) {
+    fsPrev.addEventListener('click', () => {
+      flashSaleGrid.scrollBy({ left: -300, behavior: 'smooth' })
+    })
+    fsNext.addEventListener('click', () => {
+      flashSaleGrid.scrollBy({ left: 300, behavior: 'smooth' })
+    })
+  }
+
+  // Event listener untuk tombol "Apply" pada filter harga
+  const priceBtn = document.querySelector('.price-range .btn.primary')
+  if (priceBtn) {
+    priceBtn.addEventListener('click', (e) => {
+      e.preventDefault()
+      renderProducts()
+      // Scroll halus ke grid produk setelah filter diterapkan
+      const grid = document.getElementById('products-grid')
+      if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
   }
 }
@@ -232,7 +301,7 @@ export function setupCategoryCarousel() {
  */
 export function updateCategoryCarousel() {
   const selectedCategory = getSelectedCategory()
-  const categoryItems = document.querySelectorAll('.category-item')
+  const categoryItems = document.querySelectorAll('.category-card')
 
   categoryItems.forEach(item => {
     if (item.dataset.category === selectedCategory) {
@@ -247,7 +316,10 @@ export function updateCategoryCarousel() {
  * Setup product detail page
  */
 export function setupProductDetailPage() {
-  const urlParams = new URLSearchParams(window.location.search)
+  // Mengambil ID dari hash karena navigasi menggunakan window.location.hash
+  const hash = window.location.hash
+  const paramsString = hash.includes('?') ? hash.split('?')[1] : ''
+  const urlParams = new URLSearchParams(paramsString)
   const productId = urlParams.get('id')
 
   if (!productId) {
@@ -271,17 +343,20 @@ function renderProductDetail(product) {
   const detailContainer = document.getElementById('product-detail-container')
   if (!detailContainer) return
 
-  const discount = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100
-  )
+  const discount = discountPercent(product)
+  const safeImage = isValidImageUrl(product.image)
+    ? product.image
+    : 'images/placeholder.jpg'
+  const safeName = escapeHtml(product.name)
+  const safeDescription = escapeHtml(product.description)
 
   detailContainer.innerHTML = `
     <div class="product-detail-page">
       <div class="product-detail-images">
-        <img src="${product.image}" alt="${product.name}" class="main-product-image" />
+        <img src="${safeImage}" alt="${safeName}" class="main-product-image" />
       </div>
       <div class="product-detail-info">
-        <h1 class="product-detail-title">${product.name}</h1>
+        <h1 class="product-detail-title">${safeName}</h1>
         <div class="product-detail-rating">
           <div class="stars">
             ${generateStars(product.rating)}
@@ -292,7 +367,7 @@ function renderProductDetail(product) {
           <span class="current-price">$${product.price.toFixed(2)}</span>
           ${discount > 0 ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span><span class="discount-badge">-${discount}%</span>` : ''}
         </div>
-        <p class="product-detail-description">${product.description}</p>
+        <p class="product-detail-description">${safeDescription}</p>
         <div class="product-detail-stock">
           <span class="stock-status ${product.inStock ? 'in-stock' : 'out-of-stock'}">
             ${product.inStock ? '✓ In Stock' : '✗ Out of Stock'}
@@ -308,7 +383,7 @@ function renderProductDetail(product) {
             <i data-lucide="shopping-cart"></i>
             ${product.inStock ? 'Add to Cart' : 'Out of Stock'}
           </button>
-          <button class="wishlist-btn btn-outline" data-product-id="${product.id}">
+          <button type="button" class="wishlist-btn btn-outline product-wishlist" data-product-id="${product.id}">
             <i data-lucide="heart"></i>
           </button>
         </div>
@@ -340,9 +415,10 @@ function renderProductDetail(product) {
   if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
       const quantity = parseInt(qtyInput.value) || 1
-      import('../js/state.js').then(({ addToCart }) => {
-        addToCart({ ...product, quantity })
-        toast.success(`${product.name} added to cart!`)
+      import('./cart.js').then(cartModule => {
+        for (let i = 0; i < quantity; i++) {
+          cartModule.addToCart(product.id)
+        }
       })
     })
   }

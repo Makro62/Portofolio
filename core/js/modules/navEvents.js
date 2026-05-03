@@ -3,8 +3,7 @@
    Navigation and routing event handlers
    =========================================== */
 
-import { loadPage } from '../router.js'
-import { toggleMobileMenu } from '../router.js'
+import { loadPage, toggleMobileMenu } from '../router.js'
 
 export function handleNavigationClick(e) {
   // Handle data-page navigation

@@ -1150,7 +1150,7 @@
   }
 
   .flash-sale-section {
-    background: var(--color-accent)25; /* 10% opacity */
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
   }
 
   .sidebar-header {

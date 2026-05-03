@@ -17,22 +17,7 @@ import {
   DELIVERY_FEE,
   PAID_DELIVERY_FEE,
 } from '../js/constants.js'
-
-function escapeHtml(unsafe) {
-  if (typeof unsafe !== 'string') return ''
-  return unsafe
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;')
-}
-
-function isValidImageUrl(url) {
-  return (
-    typeof url === 'string' && (url.startsWith('http') || url.startsWith('/'))
-  )
-}
+import { escapeHtml, isValidImageUrl } from '../js/utils/escapeHtml.js'
 
 export function removeFromCart(productId) {
   removeFromCartState(productId)
@@ -40,9 +25,10 @@ export function removeFromCart(productId) {
 }
 
 export function addToCart(productId) {
-  const id = typeof productId === 'string' ? parseInt(productId) : productId
+  const id =
+    typeof productId === 'string' ? parseInt(productId, 10) : productId
   const fruit = fruits.find(f => f.id === id)
-  if (!fruit) return
+  if (!fruit || Number.isNaN(id)) return
   const cart = getCart()
   const existing = cart.find(item => item.id === id)
   if (existing) {
@@ -89,7 +75,9 @@ function showCartAddAnimation(productId) {
 }
 
 export function increaseQuantity(productId) {
-  const id = typeof productId === 'string' ? parseInt(productId) : productId
+  const id =
+    typeof productId === 'string' ? parseInt(productId, 10) : productId
+  if (Number.isNaN(id)) return
   const cart = getCart()
   const item = cart.find(i => i.id === id)
   if (item) {
@@ -99,7 +87,9 @@ export function increaseQuantity(productId) {
 }
 
 export function decreaseQuantity(productId) {
-  const id = typeof productId === 'string' ? parseInt(productId) : productId
+  const id =
+    typeof productId === 'string' ? parseInt(productId, 10) : productId
+  if (Number.isNaN(id)) return
   const cart = getCart()
   const item = cart.find(i => i.id === id)
   if (!item) return
@@ -153,7 +143,15 @@ export function getTotalItems() {
   return getCart().reduce((sum, item) => sum + item.quantity, 0)
 }
 
+function ensureCartOverlayInBody() {
+  const overlay = document.getElementById('cart-overlay')
+  if (overlay && overlay.parentElement !== document.body) {
+    document.body.appendChild(overlay)
+  }
+}
+
 export function initCartDisplay() {
+  ensureCartOverlayInBody()
   const overlay = document.getElementById('cart-overlay')
   if (overlay) {
     overlay.classList.add('hidden')
@@ -209,11 +207,12 @@ export function updateCartDisplay() {
   const totalEl = document.getElementById('cart-total')
   if (subtotalEl) subtotalEl.textContent = `$${subtotal.toFixed(2)}`
   if (discountEl) {
+    const discountRow = discountEl.closest('.summary-row')
     if (discount > 0) {
-      discountEl.closest('.summary-row').style.display = 'flex'
+      if (discountRow) discountRow.style.display = 'flex'
       discountEl.textContent = `-$${discount.toFixed(2)}`
     } else {
-      discountEl.closest('.summary-row').style.display = 'none'
+      if (discountRow) discountRow.style.display = 'none'
     }
   }
   if (deliveryEl)
@@ -240,7 +239,7 @@ export function updateCartDisplay() {
         const safeName = escapeHtml(item.name)
         const safeImage = isValidImageUrl(item.image)
           ? item.image
-          : '/images/placeholder.jpg'
+          : 'images/placeholder.jpg'
         return `
         <div class="cart-item" data-cart-item="${item.id}">
           <div class="cart-item-image">
@@ -315,6 +314,7 @@ function updateShippingProgress(subtotal) {
 }
 
 export function toggleCart(show) {
+  ensureCartOverlayInBody()
   const overlay = document.getElementById('cart-overlay')
   if (!overlay) return
   if (show) {

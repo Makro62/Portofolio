@@ -214,8 +214,11 @@ select:focus-visible {
   font-weight: var(--font-weight-bold);
 }
 
-/* Modal/Dialog Accessibility */
-[role="dialog"],
+/*
+ * Modal/dialog terpusat — JANGAN pakai untuk #cart-overlay (drawer full-screen).
+ * Transform pada overlay membuat fixed children relatif ke kotak kecil → keranjang “nyasar” kiri.
+ */
+[role="dialog"]:not(#cart-overlay),
 [role="alertdialog"] {
   position: fixed;
   top: 50%;
@@ -244,13 +247,7 @@ body.modal-open {
   border: 0 !important;
 }
 
-/* Dark Mode - Ensure sufficient contrast */
-[data-theme="dark"] {
-  /* Increase contrast ratios for better readability */
-  --color-text-primary: #f8f9fa;
-  --color-text-secondary: #dee2e6;
-  --color-text-tertiary: #adb5bd;
-}
+/* Warna dark mode: satu sumber di variables.css ([data-theme="dark"]) */
 
 /* Print Styles - untuk aksesibilitas saat print */
 @media print {

@@ -10,22 +10,27 @@ import {
   handleWishlistActions,
   setupPromoCodeHandlers,
 } from './cartEvents.js'
+import { loadPage } from '../router.js'
 import { setupForms } from './formEvents.js'
 import { setSearchTerm, getCurrentPage, setSelectedCategory } from '../state.js'
 
 async function safeRenderProducts() {
   try {
-    // Mengarahkan ke modul render produk yang benar jika sudah dipisahkan nanti
     const productModule = await import('../../components/products.js')
-    if (productModule && typeof productModule.renderProducts === 'function') {
+    if (!productModule) return
+    if (typeof productModule.renderCategories === 'function') {
+      productModule.renderCategories()
+    }
+    if (typeof productModule.renderProducts === 'function') {
       productModule.renderProducts()
     }
+    if (typeof productModule.updateCategoryCarousel === 'function') {
+      productModule.updateCategoryCarousel()
+    }
   } catch (e) {
-    console.warn('RenderProducts function not found in products.js')
+    console.warn('Gagal merender produk:', e)
   }
 }
-
-import { loadPage } from '../router.js'
 
 export function setupEventListeners() {
   document.addEventListener('click', handleNavigationClick)

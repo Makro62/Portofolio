@@ -24,7 +24,7 @@
 }
 
 .cart-overlay:not(.hidden) {
-  display: flex;
+  display: block;
   opacity: 1;
 }
 
@@ -32,18 +32,23 @@
   display: none !important;
 }
 
-/* Cart Sidebar - Modern Design */
+/* Cart Sidebar — tetap menempel kanan viewport (ikon keranjang di kanan) */
 .cart-sidebar {
-  position: relative;
-  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: auto;
+  width: min(100vw, 480px);
   max-width: 480px;
   height: 100vh;
+  height: 100dvh;
   background: var(--color-bg-primary);
   display: flex;
   flex-direction: column;
   box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: calc(var(--z-modal, 500) + 1);
 }
 
 .cart-overlay:not(.hidden) .cart-sidebar {

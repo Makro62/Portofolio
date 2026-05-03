@@ -3,6 +3,8 @@
    Konfigurasi aplikasi
    =========================================== */
 
+import { STORAGE_KEYS } from './constants.js'
+
 export const CONFIG = {
   // Path Configuration
   paths: {
@@ -13,7 +15,7 @@ export const CONFIG = {
   
   // Authentication
   auth: {
-    storageKey: 'freshfruits_user',
+    storageKey: STORAGE_KEYS.USER,
     defaultCredentials: {
       username: 'admin',
       password: 'admin'
@@ -22,7 +24,7 @@ export const CONFIG = {
   
   // Cart
   cart: {
-    storageKey: 'freshfruits_cart',
+    storageKey: STORAGE_KEYS.CART,
     deliveryFee: 2.50
   },
   

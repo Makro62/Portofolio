@@ -255,5 +255,3 @@ Jika ada pertanyaan atau issue:
 **Made with ❤️ for healthy living**
 
 **Last Updated**: November 23, 2025
-
-testing tambahan

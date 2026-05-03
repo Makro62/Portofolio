@@ -53,9 +53,9 @@
   transition: opacity var(--transition-slow);
 }
 
-/* Cart Overlay - Show state */
+/* Cart Overlay - Show state (block: sidebar position:fixed — hindari flex menggeser drawer) */
 .cart-overlay:not(.hidden) {
-  display: flex;
+  display: block;
   opacity: 1;
 }
 
