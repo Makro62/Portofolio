@@ -1,0 +1,37 @@
+:root {
+  --app-content-max-width: 1200px;
+  --app-content-inline-padding: clamp(1rem, 4vw, 3rem);
+  --app-content-block-padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.app-content {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding: var(--app-content-block-padding) var(--app-content-inline-padding);
+  box-sizing: border-box;
+}
+
+.app-content > * {
+  width: 100%;
+}
+
+.app-content .section-constrained {
+  width: min(var(--app-content-max-width), 100%);
+  margin-inline: auto;
+}
+
+.app-content .full-bleed {
+  width: 100%;
+  margin-inline: 0;
+}
+
+@media (min-width: 1200px) {
+  .app-content {
+    padding-left: clamp(2rem, 5vw, 5rem);
+    padding-right: clamp(2rem, 5vw, 5rem);
+  }
+}
+

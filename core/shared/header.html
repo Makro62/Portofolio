@@ -1,0 +1,164 @@
+<!-- Header Component -->
+<header class="site-header" role="banner">
+  <!-- Top information bar -->
+  <div class="header-top">
+    <div class="header-top-left">
+      <span>🚚 Gratis ongkir seluruh Indonesia</span>
+      <span>💳 Bayar di tempat & cicilan 0%</span>
+      <span>🕑 Customer support 24/7</span>
+    </div>
+    <div class="header-top-right">
+      <button id="auth-btn" class="top-link" type="button">
+        <i class="auth-icon" data-lucide="user"></i>
+        <span>Masuk/Daftar</span>
+      </button>
+      <button class="top-link" type="button">
+        <i data-lucide="message-circle"></i>
+        <span>Chat</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main header -->
+  <div class="header-main">
+    <a
+      href="#"
+      class="header-logo"
+      data-page="home"
+      aria-label="FreshFruits Home"
+    >
+      <img
+        src="https://via.placeholder.com/48x48/42b549/ffffff?text=FF"
+        alt="FreshFruits"
+      />
+      <div class="logo-text">
+        <span class="logo-main">FreshFruits</span>
+        <small class="logo-tagline">Fresh Everyday</small>
+      </div>
+    </a>
+
+    <div class="header-search" role="search">
+      <label class="search-select" for="category-select">
+        <select id="category-select" aria-label="Pilih kategori produk">
+          <option value="all">Semua</option>
+          <option value="tropis">Buah Tropis</option>
+          <option value="musiman">Buah Musiman</option>
+          <option value="berry">Berry</option>
+          <option value="jus">Jus Segar</option>
+        </select>
+      </label>
+      <div class="search-field">
+        <i class="search-icon" data-lucide="search"></i>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Cari buah segar, jus, dll..."
+          aria-label="Cari produk"
+        />
+      </div>
+      <button class="search-submit" id="search-btn" type="button">Cari</button>
+    </div>
+
+    <div class="header-actions">
+      <button
+        id="dark-mode-toggle"
+        class="header-icon-btn"
+        aria-label="Ubah tema"
+      >
+        <i id="dark-mode-icon" data-lucide="moon"></i>
+      </button>
+      <button
+        id="header-wishlist-btn"
+        class="header-icon-btn"
+        type="button"
+        aria-label="Lihat wishlist"
+        data-page="profile"
+      >
+        <i data-lucide="heart"></i>
+        <span id="wishlist-badge" class="cart-count">0</span>
+      </button>
+      <button
+        id="cart-btn"
+        class="header-icon-btn cart-button"
+        type="button"
+        aria-label="Lihat keranjang"
+      >
+        <i data-lucide="shopping-bag"></i>
+        <span id="cart-count" class="cart-count">0</span>
+      </button>
+      <button
+        id="menu-toggle"
+        class="header-icon-btn menu-toggle"
+        type="button"
+        aria-label="Buka menu"
+      >
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Secondary navigation -->
+  <div class="header-secondary">
+    <button class="category-pill" type="button">
+      <i data-lucide="list"></i>
+      <span>Semua Kategori</span>
+    </button>
+    <nav class="primary-nav" aria-label="Navigasi utama">
+      <a href="#" class="nav-link" data-page="home">Home</a>
+      <a href="#" class="nav-link" data-page="shop">Shop</a>
+      <a href="#" class="nav-link" data-page="about">About</a>
+      <a href="#" class="nav-link" data-page="contact">Contact</a>
+      <a href="#" class="nav-link" data-page="profile">Profile</a>
+    </nav>
+    <div class="header-promos">
+      <span>🔥 Flash Sale tiap hari</span>
+      <span>💰 Diskon hingga 50%</span>
+      <span>🌱 100% organik</span>
+    </div>
+  </div>
+
+  <!-- Mobile overlay menu -->
+  <div id="mobile-menu" class="mobile-menu hidden" aria-hidden="true">
+    <div class="mobile-panel">
+      <button
+        class="mobile-menu-close"
+        id="mobile-menu-close"
+        type="button"
+        aria-label="Tutup menu"
+      >
+        <i data-lucide="x"></i>
+      </button>
+      <div class="mobile-search">
+        <i class="search-icon" data-lucide="search"></i>
+        <input
+          type="text"
+          id="mobile-search-input"
+          placeholder="Cari buah segar..."
+          aria-label="Cari produk di mobile"
+        />
+      </div>
+      <nav class="mobile-nav" aria-label="Menu mobile">
+        <a href="#" class="mobile-nav-link" data-page="home">
+          <i data-lucide="home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#" class="mobile-nav-link" data-page="shop">
+          <i data-lucide="shopping-bag"></i>
+          <span>Shop</span>
+        </a>
+        <a href="#" class="mobile-nav-link" data-page="about">
+          <i data-lucide="info"></i>
+          <span>About</span>
+        </a>
+        <a href="#" class="mobile-nav-link" data-page="contact">
+          <i data-lucide="mail"></i>
+          <span>Contact</span>
+        </a>
+        <a href="#" class="mobile-nav-link" data-page="profile">
+          <i data-lucide="user"></i>
+          <span>Profile</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>

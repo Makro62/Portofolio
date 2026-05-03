@@ -1,0 +1,35 @@
+/* ===========================================
+   MAIN STYLESHEET
+   Imports all modular CSS files
+   =========================================== */
+
+/* Base Styles - Foundation */
+@import url('base/variables.css');
+@import url('base/reset.css');
+@import url('base/typography.css');
+@import url('base/utilities.css');
+@import url('base/accessibility.css');
+
+/* Layout - Structure */
+@import url('layout/header.css');
+@import url('layout/footer.css');
+@import url('layout/app-layout.css');
+
+/* Components - Reusable UI */
+@import url('components/buttons.css');
+@import url('components/products.css');
+@import url('components/cart.css');
+@import url('components/cart-improved.css');
+@import url('components/toast.css');
+@import url('components/loading.css');
+@import url('components/searchAutocomplete.css');
+@import url('components/wishlist.css');
+
+/* Pages - Page-specific styles */
+@import url('../../home/home.css');
+@import url('../../shop/shop.css');
+@import url('../../about/about.css');
+@import url('../../contact/contact.css');
+@import url('../../login/login.css');
+@import url('../../profile/profile.css');
+@import url('../../product-detail/product-detail.css');

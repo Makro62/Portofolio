@@ -1,0 +1,347 @@
+<!-- Shop Page - Tokopedia Style -->
+
+<!-- Hero Banner with Carousel -->
+<section class="bg-success text-white py-4">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <h1 class="display-4 fw-bold mb-3">Belanja Buah Segar Terpercaya</h1>
+        <p class="lead mb-4">Temukan koleksi buah-buahan premium dengan harga terbaik dan kualitas terjamin</p>
+        <div class="d-flex gap-2">
+          <button class="btn btn-light btn-lg">
+            <i class="bi bi-shop-window"></i> Mulai Belanja
+          </button>
+          <button class="btn btn-outline-light btn-lg">
+            <i class="bi bi-star"></i> Favorit Saya
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+             alt="Buah Segar" class="img-fluid rounded">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Shop Banner Carousel -->
+<section class="py-4 bg-light">
+  <div class="container">
+    <div id="shopBannerCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner rounded overflow-hidden shadow">
+        <div class="carousel-item active">
+          <div class="row bg-gradient-warning text-dark">
+            <div class="col-md-7 p-4">
+              <span class="badge bg-danger mb-2">🔥 Hot Deal!</span>
+              <h3 class="fw-bold mb-2">Diskon Up to 70%</h3>
+              <p class="mb-3">Buah segar musiman dengan harga spesial. Hemat sampai Rp50.000!</p>
+              <button class="btn btn-dark">
+                <i class="bi bi-lightning"></i> Belanja Sekarang
+              </button>
+            </div>
+            <div class="col-md-5">
+              <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                   class="img-fluid" alt="Promo Buah">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row bg-gradient-info text-white">
+            <div class="col-md-7 p-4">
+              <span class="badge bg-warning text-dark mb-2">🌱 Organic Premium</span>
+              <h3 class="fw-bold mb-2">Koleksi Organik Terbaik</h3>
+              <p class="mb-3">Beli 2 kemasan, dapatkan 1 gratis untuk semua berry organik!</p>
+              <button class="btn btn-light">
+                <i class="bi bi-leaf"></i> Jelajahi Organik
+              </button>
+            </div>
+            <div class="col-md-5">
+              <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                   class="img-fluid" alt="Buah Organik">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row bg-gradient-success text-white">
+            <div class="col-md-7 p-4">
+              <span class="badge bg-warning text-dark mb-2">🚚 Gratis Ongkir</span>
+              <h3 class="fw-bold mb-2">Pengiriman Gratis Hari Ini</h3>
+              <p class="mb-3">Order di atas Rp100.000 dapat pengiriman same-day gratis!</p>
+              <button class="btn btn-light">
+                <i class="bi bi-truck"></i> Order Sekarang
+              </button>
+            </div>
+            <div class="col-md-5">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                   class="img-fluid" alt="Pengiriman">
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#shopBannerCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#shopBannerCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Category Carousel -->
+<section class="category-carousel-section" aria-labelledby="shop-category-heading">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-copy">
+        <h2 id="shop-category-heading">Shop by Category</h2>
+        <p class="section-subtext">Discover our fruit collection quickly through our featured categories.</p>
+      </div>
+      <div class="carousel-controls">
+        <button 
+          class="carousel-btn prev" 
+          id="category-prev"
+          aria-label="Previous categories"
+          aria-controls="category-carousel"
+          role="button"
+        >
+          <i data-lucide="chevron-left"></i>
+        </button>
+        <button 
+          class="carousel-btn next" 
+          id="category-next"
+          aria-label="Next categories"
+          aria-controls="category-carousel"
+          role="button"
+        >
+          <i data-lucide="chevron-right"></i>
+        </button>
+      </div>
+    </div>
+    <div class="category-carousel" id="category-carousel" role="listbox" aria-label="Fruit categories">
+      <div class="category-card active" data-category="all" role="option" tabindex="0" aria-selected="true" aria-label="All Fruits category">
+        <div class="category-icon">
+          <i data-lucide="grid-3x3"></i>
+        </div>
+        <div class="category-info">
+          <span class="category-name">All Fruits</span>
+          <p class="category-description">All FreshFruits collection in one click.</p>
+          <span class="category-count">20+ options</span>
+        </div>
+      </div>
+      <div class="category-card" data-category="berries" role="option" tabindex="0" aria-selected="false" aria-label="Berries category">
+        <div class="category-icon">
+          <i data-lucide="heart"></i>
+        </div>
+        <div class="category-info">
+          <span class="category-name">Berries</span>
+          <p class="category-description">Strawberry, blueberry, raspberry, and more.</p>
+          <span class="category-count">6+ options</span>
+        </div>
+      </div>
+      <div class="category-card" data-category="tropical" role="option" tabindex="0" aria-selected="false" aria-label="Tropical category">
+        <div class="category-icon">
+          <i data-lucide="sun"></i>
+        </div>
+        <div class="category-info">
+          <span class="category-name">Tropical</span>
+          <p class="category-description">Nikmati manisnya mangga, pepaya, dan teman-temannya.</p>
+          <span class="category-count">7+ pilihan</span>
+        </div>
+      </div>
+      <div class="category-card" data-category="citrus" role="option" tabindex="0" aria-selected="false" aria-label="Citrus category">
+        <div class="category-icon">
+          <i data-lucide="citrus"></i>
+        </div>
+        <div class="category-info">
+          <span class="category-name">Citrus</span>
+          <p class="category-description">Jeruk segar kaya vitamin C untuk imun harian.</p>
+          <span class="category-count">4+ pilihan</span>
+        </div>
+      </div>
+      <div class="category-card" data-category="classic" role="option" tabindex="0" aria-selected="false" aria-label="Classic category">
+        <div class="category-icon">
+          <i data-lucide="apple"></i>
+        </div>
+        <div class="category-info">
+          <span class="category-name">Classic</span>
+          <p class="category-description">Buah favorit keluarga seperti apel dan pisang.</p>
+          <span class="category-count">5+ pilihan</span>
+        </div>
+      </div>
+      <div class="category-card" data-category="exotic" role="option" tabindex="0" aria-selected="false" aria-label="Exotic category">
+        <div class="category-icon">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <div class="category-info">
+          <span class="category-name">Exotic</span>
+          <p class="category-description">Pilihan unik seperti dragon fruit dan star fruit.</p>
+          <span class="category-count">4+ pilihan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Flash Sale Section -->
+<section class="flash-sale-section">
+  <div class="container">
+    <div class="flash-sale-header">
+      <div class="flash-sale-title">
+        <i data-lucide="zap"></i>
+        <h2>Flash Sale</h2>
+        <div class="countdown">
+          <span>Ends in</span>
+          <div class="countdown-timer">
+            <div class="time-unit">
+              <span class="time-value">02</span>
+              <span class="time-label">h</span>
+            </div>
+            <span class="time-separator">:</span>
+            <div class="time-unit">
+              <span class="time-value">35</span>
+              <span class="time-label">m</span>
+            </div>
+            <span class="time-separator">:</span>
+            <div class="time-unit">
+              <span class="time-value">48</span>
+              <span class="time-label">s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="view-all-link">View All <i data-lucide="arrow-right"></i></a>
+    </div>
+    <div class="flash-sale-container">
+      <button class="flash-sale-nav prev" id="flash-sale-prev">
+        <i data-lucide="chevron-left"></i>
+      </button>
+      <div class="flash-sale-wrapper">
+        <div class="flash-sale-grid" id="flash-sale-grid">
+          <!-- Flash sale items will be rendered here -->
+        </div>
+      </div>
+      <button class="flash-sale-nav next" id="flash-sale-next">
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Main Shop Content -->
+<main class="main-shop">
+  <div class="container">
+    <!-- Filter & Sort Bar -->
+    <div class="shop-toolbar">
+      <div class="toolbar-left">
+        <button class="filter-toggle" id="filter-toggle">
+          <i data-lucide="sliders-horizontal"></i>
+          <span>Filters</span>
+        </button>
+        <div class="results-count" id="results-count">
+          Showing <strong>8</strong> products
+        </div>
+      </div>
+      <div class="toolbar-right">
+        <div class="sort-dropdown">
+          <button class="sort-btn" id="sort-btn">
+            <span>Sort by: </span>
+            <strong id="sort-label">Popular</strong>
+            <i data-lucide="chevron-down"></i>
+          </button>
+          <div class="sort-menu hidden" id="sort-menu">
+            <button class="sort-option active" data-sort="popular">Most Popular</button>
+            <button class="sort-option" data-sort="price-low">Price: Low to High</button>
+            <button class="sort-option" data-sort="price-high">Price: High to Low</button>
+            <button class="sort-option" data-sort="rating">Highest Rated</button>
+            <button class="sort-option" data-sort="newest">Newest</button>
+          </div>
+        </div>
+        <div class="view-toggle">
+          <button class="view-btn active" data-view="grid">
+            <i data-lucide="grid-3x3"></i>
+          </button>
+          <button class="view-btn" data-view="list">
+            <i data-lucide="list"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="shop-content">
+      <!-- Sidebar Filters (Desktop) -->
+      <aside class="shop-sidebar" id="shop-sidebar">
+        <div class="sidebar-header">
+          <h3>Filters</h3>
+          <button class="clear-filters" id="clear-filters">Clear All</button>
+        </div>
+        
+        <div class="filter-group">
+          <h4>Categories</h4>
+          <div class="category-filters" id="category-filters">
+            <!-- Categories will be rendered by JS -->
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <h4>Price Range</h4>
+          <div class="price-range">
+            <div class="price-inputs">
+              <input type="number" placeholder="Min" id="price-min" value="0">
+              <span>-</span>
+              <input type="number" placeholder="Max" id="price-max" value="10">
+            </div>
+            <button class="btn primary">Apply</button>
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <h4>Rating</h4>
+          <div class="rating-filters">
+            <label class="rating-option">
+              <input type="checkbox" data-rating="4">
+              <span class="stars">
+                <i data-lucide="star"></i>
+                <i data-lucide="star"></i>
+                <i data-lucide="star"></i>
+                <i data-lucide="star"></i>
+              </span>
+              <span>& Up</span>
+            </label>
+            <label class="rating-option">
+              <input type="checkbox" data-rating="3">
+              <span class="stars">
+                <i data-lucide="star"></i>
+                <i data-lucide="star"></i>
+                <i data-lucide="star"></i>
+              </span>
+              <span>& Up</span>
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Products Grid -->
+      <div class="shop-main">
+    <div class="products-grid" id="products-grid">
+          <!-- Products will be dynamically rendered by JavaScript -->
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="pagination-btn" disabled>
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <button class="pagination-btn active">1</button>
+          <button class="pagination-btn">2</button>
+          <button class="pagination-btn">3</button>
+          <button class="pagination-btn">
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
